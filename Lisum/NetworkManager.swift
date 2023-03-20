@@ -16,9 +16,9 @@ class NetworkManager {
     private init() {}
     
     func searchMusic(for searchTerm: String) async throws -> SearchResult {
-        let endpoint = baseURL + "search?term=\(searchTerm)&media=music&limit=50"
+        let endpoint = baseURL + "search?term=\(searchTerm)&media=music&limit=200"
         
-        guard let url = URL(string: endpoint) else { throw LisumError.invalidUserName }
+        guard let url = URL(string: endpoint) else { throw LisumError.invalidSearchTerm }
         let (data, response) = try await URLSession.shared.data(from: url)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw LisumError.invalidResponse}
         

@@ -33,9 +33,8 @@ class LisumTextField: UITextField {
         adjustsFontSizeToFitWidth = true
         minimumFontSize = 12
         backgroundColor = .tertiarySystemBackground
-        autocorrectionType = .no
         returnKeyType = .search
-        placeholder = "Enter Text"
+        placeholder = "Search"
         clearButtonMode = .whileEditing
     }
 

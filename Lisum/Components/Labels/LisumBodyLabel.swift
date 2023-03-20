@@ -1,5 +1,5 @@
 //
-//  LisumTitleLabel.swift
+//  LisumBodyLabel.swift
 //  Lisum
 //
 //  Created by Terry Kuo on 2023/3/20.
@@ -7,8 +7,7 @@
 
 import UIKit
 
-class LisumTitleLabel: UILabel {
-
+class LisumBodyLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -18,16 +17,17 @@ class LisumTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+    convenience init(textAlignment: NSTextAlignment) {
         self.init(frame: .zero)
         self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
     }
     
     private func configure() {
-        textColor = .label
+        textColor = .secondaryLabel
+        font = UIFont.preferredFont(forTextStyle: .body)
         adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.9 //90%
+        adjustsFontForContentSizeCategory = true
+        minimumScaleFactor = 0.75
         lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }
