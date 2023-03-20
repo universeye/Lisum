@@ -11,7 +11,7 @@ class MediaListViewController2: UIViewController {
     
     var searchTerm: String!
     private var musics: [SearchResult.MediaInfo] = []
-    
+    private var loadingViewController: LoadingViewController?
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.register(MediaListTableViewCell.self, forCellReuseIdentifier: MediaListTableViewCell.reuseID)
@@ -53,15 +53,22 @@ class MediaListViewController2: UIViewController {
     }
     
     private func getMusic() {
+        startLoading()
         Task {
+            
             do {
                 let result = try await NetworkManager.shared.searchMusic(for: searchTerm)
                 updateData(with: result.results)
-                
             } catch {
+                if let error = error as? LisumError {
+                    self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
+                }
+                
                 print("Error: \(error)")
             }
+            stopLoading()
         }
+
     }
     
     private func updateData(with musics: [SearchResult.MediaInfo]) {
@@ -72,6 +79,20 @@ class MediaListViewController2: UIViewController {
             }
         }
         tableView.reloadData()
+    }
+    
+    private func startLoading() {
+        guard loadingViewController == nil else {
+            return
+        }
+        let vc = LoadingViewController()
+        add(vc, in: view)
+        loadingViewController = vc
+    }
+
+    func stopLoading() {
+        loadingViewController?.remove()
+        loadingViewController = nil
     }
 }
 
