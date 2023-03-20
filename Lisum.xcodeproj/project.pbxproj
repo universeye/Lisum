@@ -16,6 +16,7 @@
 		BF9B600729C8341300A23BF2 /* LisumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B600629C8341300A23BF2 /* LisumTests.swift */; };
 		BF9B601129C8341300A23BF2 /* LisumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B601029C8341300A23BF2 /* LisumUITests.swift */; };
 		BF9B601329C8341300A23BF2 /* LisumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B601229C8341300A23BF2 /* LisumUITestsLaunchTests.swift */; };
+		BF9B602129C8344B00A23BF2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602029C8344B00A23BF2 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BF9B600C29C8341300A23BF2 /* LisumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LisumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9B601029C8341300A23BF2 /* LisumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumUITests.swift; sourceTree = "<group>"; };
 		BF9B601229C8341300A23BF2 /* LisumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BF9B602029C8344B00A23BF2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +101,10 @@
 		BF9B5FEE29C8341200A23BF2 /* Lisum */ = {
 			isa = PBXGroup;
 			children = (
+				BF9B601F29C8342B00A23BF2 /* NoUse */,
 				BF9B5FEF29C8341200A23BF2 /* AppDelegate.swift */,
 				BF9B5FF129C8341200A23BF2 /* SceneDelegate.swift */,
-				BF9B5FF329C8341200A23BF2 /* ViewController.swift */,
-				BF9B5FF529C8341200A23BF2 /* Main.storyboard */,
+				BF9B602029C8344B00A23BF2 /* SearchViewController.swift */,
 				BF9B5FF829C8341300A23BF2 /* Assets.xcassets */,
 				BF9B5FFA29C8341300A23BF2 /* LaunchScreen.storyboard */,
 				BF9B5FFD29C8341300A23BF2 /* Info.plist */,
@@ -125,6 +127,15 @@
 				BF9B601229C8341300A23BF2 /* LisumUITestsLaunchTests.swift */,
 			);
 			path = LisumUITests;
+			sourceTree = "<group>";
+		};
+		BF9B601F29C8342B00A23BF2 /* NoUse */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B5FF329C8341200A23BF2 /* ViewController.swift */,
+				BF9B5FF529C8341200A23BF2 /* Main.storyboard */,
+			);
+			path = NoUse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +271,7 @@
 			files = (
 				BF9B5FF429C8341200A23BF2 /* ViewController.swift in Sources */,
 				BF9B5FF029C8341200A23BF2 /* AppDelegate.swift in Sources */,
+				BF9B602129C8344B00A23BF2 /* SearchViewController.swift in Sources */,
 				BF9B5FF229C8341200A23BF2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +454,6 @@
 				INFOPLIST_FILE = Lisum/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +481,6 @@
 				INFOPLIST_FILE = Lisum/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
