@@ -17,6 +17,20 @@
 		BF9B601129C8341300A23BF2 /* LisumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B601029C8341300A23BF2 /* LisumUITests.swift */; };
 		BF9B601329C8341300A23BF2 /* LisumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B601229C8341300A23BF2 /* LisumUITestsLaunchTests.swift */; };
 		BF9B602129C8344B00A23BF2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602029C8344B00A23BF2 /* SearchViewController.swift */; };
+		BF9B602329C836D500A23BF2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602229C836D500A23BF2 /* NetworkManager.swift */; };
+		BF9B602529C837BA00A23BF2 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602429C837BA00A23BF2 /* SearchResult.swift */; };
+		BF9B602A29C8384E00A23BF2 /* LisumError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602929C8384E00A23BF2 /* LisumError.swift */; };
+		BF9B602E29C83B6B00A23BF2 /* LisumTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602D29C83B6B00A23BF2 /* LisumTextField.swift */; };
+		BF9B603029C83ED600A23BF2 /* MediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602F29C83ED600A23BF2 /* MediaListViewController.swift */; };
+		BF9B603229C8438500A23BF2 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603129C8438500A23BF2 /* UIHelper.swift */; };
+		BF9B603429C843C400A23BF2 /* MediaInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603329C843C400A23BF2 /* MediaInfoCell.swift */; };
+		BF9B603629C8462400A23BF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603529C8462400A23BF2 /* Constants.swift */; };
+		BF9B603829C8465600A23BF2 /* AlbumCoverImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603729C8465600A23BF2 /* AlbumCoverImageView.swift */; };
+		BF9B603A29C8612200A23BF2 /* MediaListViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603929C8612200A23BF2 /* MediaListViewController2.swift */; };
+		BF9B603C29C8616D00A23BF2 /* MediaListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603B29C8616D00A23BF2 /* MediaListTableViewCell.swift */; };
+		BF9B603F29C868FE00A23BF2 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603E29C868FE00A23BF2 /* UIViewController+Ext.swift */; };
+		BF9B604129C8693200A23BF2 /* LisumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B604029C8693200A23BF2 /* LisumEmptyView.swift */; };
+		BF9B604329C8696200A23BF2 /* LisumTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B604229C8696200A23BF2 /* LisumTitleLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +65,20 @@
 		BF9B601029C8341300A23BF2 /* LisumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumUITests.swift; sourceTree = "<group>"; };
 		BF9B601229C8341300A23BF2 /* LisumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BF9B602029C8344B00A23BF2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		BF9B602229C836D500A23BF2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BF9B602429C837BA00A23BF2 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		BF9B602929C8384E00A23BF2 /* LisumError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumError.swift; sourceTree = "<group>"; };
+		BF9B602D29C83B6B00A23BF2 /* LisumTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumTextField.swift; sourceTree = "<group>"; };
+		BF9B602F29C83ED600A23BF2 /* MediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListViewController.swift; sourceTree = "<group>"; };
+		BF9B603129C8438500A23BF2 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		BF9B603329C843C400A23BF2 /* MediaInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaInfoCell.swift; sourceTree = "<group>"; };
+		BF9B603529C8462400A23BF2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BF9B603729C8465600A23BF2 /* AlbumCoverImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverImageView.swift; sourceTree = "<group>"; };
+		BF9B603929C8612200A23BF2 /* MediaListViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListViewController2.swift; sourceTree = "<group>"; };
+		BF9B603B29C8616D00A23BF2 /* MediaListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListTableViewCell.swift; sourceTree = "<group>"; };
+		BF9B603E29C868FE00A23BF2 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		BF9B604029C8693200A23BF2 /* LisumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumEmptyView.swift; sourceTree = "<group>"; };
+		BF9B604229C8696200A23BF2 /* LisumTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumTitleLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +129,18 @@
 		BF9B5FEE29C8341200A23BF2 /* Lisum */ = {
 			isa = PBXGroup;
 			children = (
-				BF9B601F29C8342B00A23BF2 /* NoUse */,
+				BF9B603D29C868EF00A23BF2 /* Extensions */,
 				BF9B5FEF29C8341200A23BF2 /* AppDelegate.swift */,
 				BF9B5FF129C8341200A23BF2 /* SceneDelegate.swift */,
-				BF9B602029C8344B00A23BF2 /* SearchViewController.swift */,
 				BF9B5FF829C8341300A23BF2 /* Assets.xcassets */,
 				BF9B5FFA29C8341300A23BF2 /* LaunchScreen.storyboard */,
 				BF9B5FFD29C8341300A23BF2 /* Info.plist */,
+				BF9B602C29C83B4D00A23BF2 /* Components */,
+				BF9B602B29C838C500A23BF2 /* ViewControllers */,
+				BF9B602729C8380000A23BF2 /* Networking */,
+				BF9B602629C837F600A23BF2 /* Model */,
+				BF9B602829C8380E00A23BF2 /* Utilities */,
+				BF9B601F29C8342B00A23BF2 /* NoUse */,
 			);
 			path = Lisum;
 			sourceTree = "<group>";
@@ -132,10 +165,67 @@
 		BF9B601F29C8342B00A23BF2 /* NoUse */ = {
 			isa = PBXGroup;
 			children = (
+				BF9B602F29C83ED600A23BF2 /* MediaListViewController.swift */,
+				BF9B603329C843C400A23BF2 /* MediaInfoCell.swift */,
 				BF9B5FF329C8341200A23BF2 /* ViewController.swift */,
+				BF9B603129C8438500A23BF2 /* UIHelper.swift */,
 				BF9B5FF529C8341200A23BF2 /* Main.storyboard */,
 			);
 			path = NoUse;
+			sourceTree = "<group>";
+		};
+		BF9B602629C837F600A23BF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B602429C837BA00A23BF2 /* SearchResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF9B602729C8380000A23BF2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B602229C836D500A23BF2 /* NetworkManager.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		BF9B602829C8380E00A23BF2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B602929C8384E00A23BF2 /* LisumError.swift */,
+				BF9B603529C8462400A23BF2 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		BF9B602B29C838C500A23BF2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B602029C8344B00A23BF2 /* SearchViewController.swift */,
+				BF9B603929C8612200A23BF2 /* MediaListViewController2.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BF9B602C29C83B4D00A23BF2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B602D29C83B6B00A23BF2 /* LisumTextField.swift */,
+				BF9B603B29C8616D00A23BF2 /* MediaListTableViewCell.swift */,
+				BF9B603729C8465600A23BF2 /* AlbumCoverImageView.swift */,
+				BF9B604029C8693200A23BF2 /* LisumEmptyView.swift */,
+				BF9B604229C8696200A23BF2 /* LisumTitleLabel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BF9B603D29C868EF00A23BF2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B603E29C868FE00A23BF2 /* UIViewController+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +360,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF9B5FF429C8341200A23BF2 /* ViewController.swift in Sources */,
+				BF9B603029C83ED600A23BF2 /* MediaListViewController.swift in Sources */,
+				BF9B604129C8693200A23BF2 /* LisumEmptyView.swift in Sources */,
+				BF9B603A29C8612200A23BF2 /* MediaListViewController2.swift in Sources */,
 				BF9B5FF029C8341200A23BF2 /* AppDelegate.swift in Sources */,
+				BF9B603229C8438500A23BF2 /* UIHelper.swift in Sources */,
+				BF9B602E29C83B6B00A23BF2 /* LisumTextField.swift in Sources */,
+				BF9B602529C837BA00A23BF2 /* SearchResult.swift in Sources */,
+				BF9B602329C836D500A23BF2 /* NetworkManager.swift in Sources */,
 				BF9B602129C8344B00A23BF2 /* SearchViewController.swift in Sources */,
+				BF9B602A29C8384E00A23BF2 /* LisumError.swift in Sources */,
+				BF9B603429C843C400A23BF2 /* MediaInfoCell.swift in Sources */,
+				BF9B604329C8696200A23BF2 /* LisumTitleLabel.swift in Sources */,
 				BF9B5FF229C8341200A23BF2 /* SceneDelegate.swift in Sources */,
+				BF9B603C29C8616D00A23BF2 /* MediaListTableViewCell.swift in Sources */,
+				BF9B603629C8462400A23BF2 /* Constants.swift in Sources */,
+				BF9B603F29C868FE00A23BF2 /* UIViewController+Ext.swift in Sources */,
+				BF9B603829C8465600A23BF2 /* AlbumCoverImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
