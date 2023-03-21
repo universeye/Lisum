@@ -14,3 +14,8 @@ struct Assets {
     let padding: CGFloat = 20
     var transblack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
 }
+
+struct LisumColor {
+    static let mainColor = UIColor(named: "mainColor")!
+    static let bgColor = UIColor(named: "bgColor")!
+}

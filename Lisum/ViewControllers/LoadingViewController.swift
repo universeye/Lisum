@@ -13,7 +13,7 @@ class LoadingViewController: UIViewController {
         let containerView = UIView(frame: .zero)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.layer.cornerRadius = 20
-        containerView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        containerView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         return containerView
     }()
     
@@ -50,7 +50,7 @@ class LoadingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
             UIView.animate(withDuration: 1) {
                 self?.view.alpha = 1
             }

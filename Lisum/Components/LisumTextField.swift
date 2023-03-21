@@ -24,7 +24,7 @@ class LisumTextField: UITextField {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
         layer.borderWidth = 2
-        layer.borderColor = UIColor.systemGray4.cgColor //do bordoer color, need to use CGColor not UIColor, so you have to type out full UIColor
+        layer.borderColor = LisumColor.mainColor.cgColor //do bordoer color, need to use CGColor not UIColor, so you have to type out full UIColor
         
         textColor = .label //black on lightmode, white on darkmode
         tintColor = .label //blinking cursur

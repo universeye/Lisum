@@ -18,7 +18,8 @@ class SearchViewController: UIViewController {
     }
     
     private func configureVC() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = LisumColor.bgColor
+        navigationController?.navigationBar.prefersLargeTitles = true
         title = "Lisum"
     }
     

@@ -26,6 +26,7 @@ class MediaListTableViewCell: UITableViewCell {
     //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = LisumColor.bgColor
         configureAlbumCover()
         configureStackView()
     }
@@ -49,8 +50,8 @@ class MediaListTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             albumCoverImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             albumCoverImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            albumCoverImageView.heightAnchor.constraint(equalToConstant: 50),
-            albumCoverImageView.widthAnchor.constraint(equalToConstant: 50)
+            albumCoverImageView.heightAnchor.constraint(equalToConstant: 60),
+            albumCoverImageView.widthAnchor.constraint(equalToConstant: 60)
         ])
     }
     

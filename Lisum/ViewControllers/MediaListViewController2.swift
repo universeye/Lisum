@@ -16,6 +16,7 @@ class MediaListViewController2: UIViewController {
     private var offsetCount = 0
     private let tableView: UITableView = {
        let tableView = UITableView()
+        tableView.backgroundColor = LisumColor.bgColor
         tableView.register(MediaListTableViewCell.self, forCellReuseIdentifier: MediaListTableViewCell.reuseID)
         return tableView
     }()
@@ -42,7 +43,9 @@ class MediaListViewController2: UIViewController {
     }
     
     private func configureVC() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = LisumColor.bgColor
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: LisumColor.mainColor]
     }
     
     private func configureTableview() {
@@ -54,6 +57,7 @@ class MediaListViewController2: UIViewController {
     }
     
     private func getMusic(offsetCount: Int) {
+        
         Task {
             do {
                 startLoading()
@@ -64,16 +68,16 @@ class MediaListViewController2: UIViewController {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
                 }
-                stopLoading()
-                print("Error: \(error)")
+                stopLoading()                
             }
             
         }
+        
 
     }
     
     private func updateData(with musics: [SearchResult.MediaInfo]) {
-        if musics.count < 20 {
+        if musics.count < 50 {
             hasMoreMusics = false
         }
         self.musics.append(contentsOf: musics)
