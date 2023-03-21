@@ -12,6 +12,8 @@ class MediaListViewController2: UIViewController {
     var searchTerm: String!
     private var musics: [SearchResult.MediaInfo] = []
     private var loadingViewController: LoadingViewController?
+    private var hasMoreMusics: Bool = true
+    private var offsetCount = 0
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.register(MediaListTableViewCell.self, forCellReuseIdentifier: MediaListTableViewCell.reuseID)
@@ -22,11 +24,10 @@ class MediaListViewController2: UIViewController {
         super.viewDidLoad()
         configureVC()
         configureTableview()
-        getMusic()
+        getMusic(offsetCount: offsetCount)
     }
     
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
     
@@ -46,32 +47,35 @@ class MediaListViewController2: UIViewController {
     
     private func configureTableview() {
         view.addSubview(tableView)
-        tableView.rowHeight = 70
+        tableView.rowHeight = 90
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
     }
     
-    private func getMusic() {
-        startLoading()
+    private func getMusic(offsetCount: Int) {
         Task {
-            
             do {
-                let result = try await NetworkManager.shared.searchMusic(for: searchTerm)
-                updateData(with: result.results)
+                startLoading()
+                let data = try await NetworkManager.shared.searchMusic(for: searchTerm, offsetCount: offsetCount)
+                updateData(with: data.results)
+                stopLoading()
             } catch {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
                 }
-                
+                stopLoading()
                 print("Error: \(error)")
             }
-            stopLoading()
+            
         }
 
     }
     
     private func updateData(with musics: [SearchResult.MediaInfo]) {
+        if musics.count < 20 {
+            hasMoreMusics = false
+        }
         self.musics.append(contentsOf: musics)
         if musics.isEmpty {
             DispatchQueue.main.async {
@@ -90,7 +94,7 @@ class MediaListViewController2: UIViewController {
         loadingViewController = vc
     }
 
-    func stopLoading() {
+    private func stopLoading() {
         loadingViewController?.remove()
         loadingViewController = nil
     }
@@ -114,6 +118,20 @@ extension MediaListViewController2: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            guard hasMoreMusics else {
+                return
+            }
+            
+            offsetCount = musics.count
+            getMusic(offsetCount: offsetCount)
+        }
+    }
 }
 
 

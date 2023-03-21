@@ -56,11 +56,4 @@ class LoadingViewController: UIViewController {
             }
         }
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        UIView.animate(withDuration: 1) {
-//            self.view.alpha = 0
-//        }
-//    }
 }

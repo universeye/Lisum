@@ -15,8 +15,9 @@ class NetworkManager {
     
     private init() {}
     
-    func searchMusic(for searchTerm: String) async throws -> SearchResult {
-        let endpoint = baseURL + "search?term=\(searchTerm)&media=music&limit=200"
+    func searchMusic(for searchTerm: String, offsetCount offset: Int) async throws -> SearchResult {
+        let replacedSpaceSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
+        let endpoint = baseURL + "search?term=\(replacedSpaceSearchTerm)&media=music&offset=\(offset)&limit=20"
         
         guard let url = URL(string: endpoint) else { throw LisumError.invalidSearchTerm }
         let (data, response) = try await URLSession.shared.data(from: url)

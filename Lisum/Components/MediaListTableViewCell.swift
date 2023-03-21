@@ -15,13 +15,19 @@ class MediaListTableViewCell: UITableViewCell {
     private let trackName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.minimumScaleFactor = 0.8
+        label.font = .systemFont(ofSize: 14)
         return label
     }()
-    
+    private let albumNameLabel = LisumBodyLabel(textAlignment: .left)
+    private let artistNameLabel = LisumBodyLabel(textAlignment: .left)
+    private let stackView = UIStackView()
+    private let padding: CGFloat = 16
     //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configure()
+        configureAlbumCover()
+        configureStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -29,29 +35,43 @@ class MediaListTableViewCell: UITableViewCell {
     }
     
     func set(mediaInfo: SearchResult.MediaInfo) {
-        self.trackName.text = mediaInfo.trackName
+        trackName.text = mediaInfo.trackName
+        albumNameLabel.text = mediaInfo.collectionName
+        artistNameLabel.text = mediaInfo.artistName
         Task {
-            albumCoverImageView.image = await albumCoverImageView.downloadImageWithAsync(from: mediaInfo.artworkUrl100, trackId: mediaInfo.trackName) ?? UIImage(named: assets.placeHolderImage)
+            albumCoverImageView.image = await albumCoverImageView.downloadImageWithAsync(from: mediaInfo.artworkUrl100, trackId: String(mediaInfo.trackId)) ?? UIImage(named: assets.placeHolderImage)
         }
     }
     
-    private func configure() {
+    private func configureAlbumCover() {
         addSubview(albumCoverImageView)
-        addSubview(trackName)
-        
-        let padding: CGFloat = 16
         
         NSLayoutConstraint.activate([
-            albumCoverImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            albumCoverImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             albumCoverImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             albumCoverImageView.heightAnchor.constraint(equalToConstant: 50),
-            albumCoverImageView.widthAnchor.constraint(equalToConstant: 50),
-            
-            trackName.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: padding),
-            trackName.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            trackName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
-            trackName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
+            albumCoverImageView.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
-
+    
+    private func configureStackView() {
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 4
+        
+        stackView.addArrangedSubview(trackName)
+        stackView.addArrangedSubview(artistNameLabel)
+        stackView.addArrangedSubview(albumNameLabel)
+        
+        addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: padding),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+        ])
+        
+    }
 }

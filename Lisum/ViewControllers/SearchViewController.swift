@@ -35,8 +35,6 @@ class SearchViewController: UIViewController {
     }
     
     private func search() {
-        print(searchTextField.text ?? "No Text")
-        searchTextField.resignFirstResponder()
         let mediaListViewController = MediaListViewController2(searchTerm: searchTextField.text ?? "No Text")
         navigationController?.pushViewController(mediaListViewController, animated: true)
     }
@@ -47,7 +45,6 @@ class SearchViewController: UIViewController {
 //MARK: - UITextFieldDelegate
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
         search()
         return true
     }
