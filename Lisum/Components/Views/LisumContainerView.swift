@@ -22,7 +22,7 @@ class LisumContainerView: UIView {
         backgroundColor = .systemBackground
         layer.cornerRadius = 16
         layer.borderWidth = 2
-        layer.borderColor = UIColor.white.cgColor
+        layer.borderColor = LisumColor.mainColor.cgColor
         translatesAutoresizingMaskIntoConstraints = false
     }
 

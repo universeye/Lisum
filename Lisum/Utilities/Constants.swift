@@ -11,6 +11,7 @@ struct Assets {
     var lisumLogo = "lisum-logo"
     let placeHolderImage = "download"
     let emptyStateImage = "empty-state-logo"
+    let searchPageIllustrator = "listenMusic1"
     let padding: CGFloat = 20
     var transblack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.75)
 }

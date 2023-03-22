@@ -54,10 +54,10 @@ class MediaListViewController2: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.indicatorStyle = .default
     }
     
     private func getMusic(offsetCount: Int) {
-        
         Task {
             do {
                 startLoading()
@@ -70,10 +70,7 @@ class MediaListViewController2: UIViewController {
                 }
                 stopLoading()                
             }
-            
         }
-        
-
     }
     
     private func updateData(with musics: [SearchResult.MediaInfo]) {

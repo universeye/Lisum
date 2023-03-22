@@ -21,11 +21,10 @@ class LisumTextField: UITextField {
     }
     
     private func configure() {
-        translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 10
+        withImage(direction: .Left, image: UIImage(systemName: "magnifyingglass")!, colorSeparator: LisumColor.mainColor, colorBorder: .yellow)
+        layer.cornerRadius = 20
         layer.borderWidth = 2
         layer.borderColor = LisumColor.mainColor.cgColor //do bordoer color, need to use CGColor not UIColor, so you have to type out full UIColor
-        
         textColor = .label //black on lightmode, white on darkmode
         tintColor = .label //blinking cursur
         textAlignment = .center
@@ -36,6 +35,14 @@ class LisumTextField: UITextField {
         returnKeyType = .search
         placeholder = "Search"
         clearButtonMode = .whileEditing
+        
+        layer.shadowColor = LisumColor.mainColor.cgColor
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 15
+        layer.shadowOpacity = 0.3
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
 
 }
+
