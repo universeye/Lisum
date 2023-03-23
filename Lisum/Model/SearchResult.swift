@@ -13,9 +13,9 @@ struct SearchResult: Codable {
         var artworkUrl100: URL?
         var trackId: Int
         var collectionName: String?
-        var artistName: String
-        var kind: String
-        var trackExplicitness: String
+        var artistName: String?
+        var kind: String?
+        var trackExplicitness: String?
         
         private enum CodingKeys: String, CodingKey {
             case trackName

@@ -39,4 +39,18 @@ extension UIViewController {
         view.removeFromSuperview()
         removeFromParent()
     }
+    
+    func startLoading(vc: inout LoadingViewController?) {
+        guard vc == nil else {
+            return
+        }
+        let loadingvc = LoadingViewController()
+        add(loadingvc, in: view)
+        vc = loadingvc
+    }
+
+    func stopLoading(vc: inout LoadingViewController?) {
+        vc?.remove()
+        vc = nil
+    }
 }

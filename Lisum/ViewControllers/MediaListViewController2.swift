@@ -60,15 +60,15 @@ class MediaListViewController2: UIViewController {
     private func getMusic(offsetCount: Int) {
         Task {
             do {
-                startLoading()
+                startLoading(vc: &loadingViewController)
                 let data = try await NetworkManager.shared.searchMusic(for: searchTerm, offsetCount: offsetCount)
                 updateData(with: data.results)
-                stopLoading()
+                stopLoading(vc: &loadingViewController)
             } catch {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
                 }
-                stopLoading()                
+                stopLoading(vc: &loadingViewController)
             }
         }
     }
@@ -84,20 +84,6 @@ class MediaListViewController2: UIViewController {
             }
         }
         tableView.reloadData()
-    }
-    
-    private func startLoading() {
-        guard loadingViewController == nil else {
-            return
-        }
-        let vc = LoadingViewController()
-        add(vc, in: view)
-        loadingViewController = vc
-    }
-
-    private func stopLoading() {
-        loadingViewController?.remove()
-        loadingViewController = nil
     }
 }
 
