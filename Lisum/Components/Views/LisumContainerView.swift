@@ -18,12 +18,17 @@ class LisumContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(backgroundColor: UIColor = .systemBackground) {
+        self.init(frame: .zero)
+        self.backgroundColor = backgroundColor
+        
+    }
+    
     private func configure() {
-        backgroundColor = .systemBackground
         layer.cornerRadius = 16
         layer.borderWidth = 2
-        layer.borderColor = LisumColor.mainColor.cgColor
         translatesAutoresizingMaskIntoConstraints = false
+        layer.borderColor = LisumColor.mainColor.cgColor
     }
 
 }

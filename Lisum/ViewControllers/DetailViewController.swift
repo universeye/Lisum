@@ -11,11 +11,16 @@ class DetailViewController: UIViewController {
 
     private var loadingViewController: LoadingViewController?
     let trackId: Int
+    private let containerViewForAlubumCover = LisumContainerView(backgroundColor: LisumColor.containerBgColor)
+    private let albumCoverImageView = AlbumCoverImageView(frame: .zero)
+    private var musicInfo: [LookUpResult.MediaInfo] = []
+    private let assets = Assets()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
-        lookUpMusic(trackId: trackId)
+        lookUpMusic(trackId: trackId) {} 
+        configureAlbumCoverSection()
     }
     
     init(trackId: Int) {
@@ -31,12 +36,26 @@ class DetailViewController: UIViewController {
         view.backgroundColor = LisumColor.bgColor
     }
     
-    private func lookUpMusic(trackId: Int) {
+    private func configureAlbumCoverSection() {
+        view.addSubview(containerViewForAlubumCover)
+        containerViewForAlubumCover.layer.borderWidth = 0
+        
+        NSLayoutConstraint.activate([
+            containerViewForAlubumCover.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            containerViewForAlubumCover.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            containerViewForAlubumCover.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+            containerViewForAlubumCover.heightAnchor.constraint(equalToConstant: 120)
+        ])
+    }
+    
+    private func lookUpMusic(trackId: Int, completion: @escaping () -> Void) {
         Task {
             do {
 //                startLoading(vc: &loadingViewController)
                 let data = try await NetworkManager.shared.lookUpMusic(for: String(trackId))
                 print(data.results[0].trackName)
+                self.musicInfo.append(contentsOf: data.results)
+                completion()
 //                stopLoading(vc: &loadingViewController)
             } catch {
                 if let error = error as? LisumError {

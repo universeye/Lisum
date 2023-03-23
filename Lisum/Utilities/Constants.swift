@@ -19,4 +19,5 @@ struct Assets {
 struct LisumColor {
     static let mainColor = UIColor(named: "mainColor")!
     static let bgColor = UIColor(named: "bgColor")!
+    static let containerBgColor = UIColor(named: "containerBGColor")!
 }
