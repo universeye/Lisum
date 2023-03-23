@@ -28,15 +28,15 @@ class NetworkManager {
         return decodedData
     }
     
-    func lookUpMusic(for trackId: String) async throws -> SearchResult {
-        let endpoint = baseURL + "https://itunes.apple.com/lookup?id=1373858923"
+    func lookUpMusic(for trackId: String) async throws -> LookUpResult {
+        let endpoint = baseURL + "lookup?id=\(trackId)"
         
         guard let url = URL(string: endpoint) else { throw LisumError.invalidSearchTerm }
         let (data, response) = try await URLSession.shared.data(from: url)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw LisumError.invalidResponse}
         
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(SearchResult.self, from: data) else { throw LisumError.failedToDecode }
+        guard let decodedData = try? decoder.decode(LookUpResult.self, from: data) else { throw LisumError.failedToDecode }
         return decodedData
     }
 }

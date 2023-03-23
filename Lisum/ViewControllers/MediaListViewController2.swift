@@ -104,7 +104,7 @@ extension MediaListViewController2: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = DetailViewController()
+        let vc = DetailViewController(trackId: musics[indexPath.row].trackId)
         if let presentationController = vc.presentationController as? UISheetPresentationController {
             presentationController.detents = [.medium()]
             presentationController.prefersGrabberVisible = true
