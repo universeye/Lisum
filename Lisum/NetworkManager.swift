@@ -17,7 +17,19 @@ class NetworkManager {
     
     func searchMusic(for searchTerm: String, offsetCount offset: Int) async throws -> SearchResult {
         let replacedSpaceSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
-        let endpoint = baseURL + "search?term=\(replacedSpaceSearchTerm)&media=music&offset=\(offset)&limit=50"
+        let endpoint = baseURL + "search?term=\(replacedSpaceSearchTerm)&media=music&offset=\(offset)&limit=200"
+        
+        guard let url = URL(string: endpoint) else { throw LisumError.invalidSearchTerm }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw LisumError.invalidResponse}
+        
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(SearchResult.self, from: data) else { throw LisumError.failedToDecode }
+        return decodedData
+    }
+    
+    func lookUpMusic(for trackId: String) async throws -> SearchResult {
+        let endpoint = baseURL + "https://itunes.apple.com/lookup?id=1373858923"
         
         guard let url = URL(string: endpoint) else { throw LisumError.invalidSearchTerm }
         let (data, response) = try await URLSession.shared.data(from: url)

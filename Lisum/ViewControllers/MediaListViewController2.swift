@@ -9,7 +9,7 @@ import UIKit
 
 class MediaListViewController2: UIViewController {
     
-    var searchTerm: String!
+    var searchTerm: String
     private var musics: [SearchResult.MediaInfo] = []
     private var loadingViewController: LoadingViewController?
     private var hasMoreMusics: Bool = true
@@ -33,8 +33,8 @@ class MediaListViewController2: UIViewController {
     }
     
     init(searchTerm: String) {
-        super.init(nibName: nil, bundle: nil)
         self.searchTerm = searchTerm
+        super.init(nibName: nil, bundle: nil)
         title = searchTerm
     }
     
@@ -117,6 +117,13 @@ extension MediaListViewController2: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vc = DetailViewController()
+        if let presentationController = vc.presentationController as? UISheetPresentationController {
+            presentationController.detents = [.medium()]
+            presentationController.prefersGrabberVisible = true
+        }
+        self.present(vc, animated: true)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

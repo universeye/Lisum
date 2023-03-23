@@ -14,6 +14,8 @@ struct SearchResult: Codable {
         var trackId: Int
         var collectionName: String?
         var artistName: String
+        var kind: String
+        var trackExplicitness: String
         
         private enum CodingKeys: String, CodingKey {
             case trackName
@@ -21,6 +23,8 @@ struct SearchResult: Codable {
             case trackId
             case collectionName
             case artistName
+            case kind
+            case trackExplicitness
         }
     }
     

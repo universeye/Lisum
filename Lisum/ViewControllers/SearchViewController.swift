@@ -39,7 +39,6 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         title = ""
         navigationController?.navigationBar.prefersLargeTitles = false
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -121,7 +120,6 @@ class SearchViewController: UIViewController {
                     }
                 }
             }
-            
         }
     }
     
