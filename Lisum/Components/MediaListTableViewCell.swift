@@ -22,14 +22,25 @@ class MediaListTableViewCell: UITableViewCell {
     private let albumNameLabel = LisumBodyLabel(textAlignment: .left)
     private let artistNameLabel = LisumBodyLabel(textAlignment: .left)
     private let stackView = UIStackView()
+    private let explicitStackView = UIStackView()
     private let padding: CGFloat = 16
+    private let explicitIndicator: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.image = UIImage(systemName: "e.square.fill")
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 10
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = LisumColor.bgColor
         configureAlbumCover()
+        configureExplicitIndicator()
         configureStackView()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +51,14 @@ class MediaListTableViewCell: UITableViewCell {
         trackName.text = mediaInfo.trackName
         albumNameLabel.text = mediaInfo.collectionName
         artistNameLabel.text = mediaInfo.artistName
+        
+        if mediaInfo.trackExplicitness == "explicit" {
+            explicitIndicator.isHidden = false
+        } else {
+            explicitIndicator.isHidden = true
+        }
+        
+        
         Task {
             albumCoverImageView.image = await albumCoverImageView.downloadImageWithAsync(from: mediaInfo.artworkUrl100, trackId: String(mediaInfo.trackId)) ?? UIImage(named: assets.placeHolderImage)
         }
@@ -56,13 +75,27 @@ class MediaListTableViewCell: UITableViewCell {
         ])
     }
     
+    private func configureExplicitIndicator() {
+        explicitStackView.axis = .horizontal
+        explicitStackView.distribution = .fillProportionally
+        explicitStackView.translatesAutoresizingMaskIntoConstraints = false
+        explicitStackView.spacing = 4
+        
+        explicitStackView.addArrangedSubview(trackName)
+        explicitStackView.addArrangedSubview(explicitIndicator)
+        
+        NSLayoutConstraint.activate([
+            explicitIndicator.widthAnchor.constraint(equalToConstant: 20)
+        ])
+    }
+    
     private func configureStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 4
         
-        stackView.addArrangedSubview(trackName)
+        stackView.addArrangedSubview(explicitStackView)
         stackView.addArrangedSubview(artistNameLabel)
         stackView.addArrangedSubview(albumNameLabel)
         
@@ -76,4 +109,6 @@ class MediaListTableViewCell: UITableViewCell {
         ])
         
     }
+    
+   
 }
