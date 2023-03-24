@@ -39,12 +39,18 @@ class DetailViewController: UIViewController {
     private func configureAlbumCoverSection() {
         view.addSubview(containerViewForAlubumCover)
         containerViewForAlubumCover.layer.borderWidth = 0
+        containerViewForAlubumCover.addSubview(albumCoverImageView)
         
         NSLayoutConstraint.activate([
             containerViewForAlubumCover.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             containerViewForAlubumCover.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             containerViewForAlubumCover.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-            containerViewForAlubumCover.heightAnchor.constraint(equalToConstant: 120)
+            containerViewForAlubumCover.heightAnchor.constraint(equalToConstant: 130),
+            
+            albumCoverImageView.centerXAnchor.constraint(equalTo: containerViewForAlubumCover.centerXAnchor),
+            albumCoverImageView.centerYAnchor.constraint(equalTo: containerViewForAlubumCover.centerYAnchor),
+            albumCoverImageView.heightAnchor.constraint(equalToConstant: 100),
+            albumCoverImageView.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     
@@ -55,6 +61,8 @@ class DetailViewController: UIViewController {
                 let data = try await NetworkManager.shared.lookUpMusic(for: String(trackId))
                 print(data.results[0].trackName)
                 self.musicInfo.append(contentsOf: data.results)
+                let albumCoverImage = await albumCoverImageView.downloadImageWithAsync(from: data.results[0].artworkUrl100, trackId: String(data.results[0].trackId)) ?? UIImage(named: assets.placeHolderImage)
+                albumCoverImageView.image = albumCoverImage
                 completion()
 //                stopLoading(vc: &loadingViewController)
             } catch {
