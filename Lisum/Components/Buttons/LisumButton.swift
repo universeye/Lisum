@@ -31,7 +31,6 @@ class LisumButton: UIButton {
     
     func set(color: UIColor, title: String, systemImageName: String) {
         configuration?.baseBackgroundColor = color
-        configuration?.baseForegroundColor = color
         configuration?.title = title
         
         configuration?.image = UIImage(systemName: systemImageName)

@@ -40,6 +40,7 @@
 		BF9B604B29C8B87900A23BF2 /* LisumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B604A29C8B87900A23BF2 /* LisumButton.swift */; };
 		BF9B604F29C8BD4E00A23BF2 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B604E29C8BD4E00A23BF2 /* LoadingViewController.swift */; };
 		BF9B605129C8BED400A23BF2 /* DotsAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */; };
+		BFAD3CF829CD997B00B741BA /* DetailActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD3CF729CD997B00B741BA /* DetailActionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		BF9B604A29C8B87900A23BF2 /* LisumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumButton.swift; sourceTree = "<group>"; };
 		BF9B604E29C8BD4E00A23BF2 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotsAnimationView.swift; sourceTree = "<group>"; };
+		BFAD3CF729CD997B00B741BA /* DetailActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,12 +235,12 @@
 		BF9B602C29C83B4D00A23BF2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BFAD3CF629CD996100B741BA /* Buttons */,
 				BF9B604D29C8B8B000A23BF2 /* Views */,
 				BF9B604C29C8B89000A23BF2 /* Labels */,
 				BF9B602D29C83B6B00A23BF2 /* LisumTextField.swift */,
 				BF9B603B29C8616D00A23BF2 /* MediaListTableViewCell.swift */,
 				BF9B603729C8465600A23BF2 /* AlbumCoverImageView.swift */,
-				BF9B604A29C8B87900A23BF2 /* LisumButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -269,6 +271,15 @@
 				BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BFAD3CF629CD996100B741BA /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B604A29C8B87900A23BF2 /* LisumButton.swift */,
+				BFAD3CF729CD997B00B741BA /* DetailActionButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +437,7 @@
 				BF98847E29CC4453009D7188 /* LookUpResult.swift in Sources */,
 				BF9B603629C8462400A23BF2 /* Constants.swift in Sources */,
 				BF9B603F29C868FE00A23BF2 /* UIViewController+Ext.swift in Sources */,
+				BFAD3CF829CD997B00B741BA /* DetailActionButton.swift in Sources */,
 				BF9B604529C8B72200A23BF2 /* LisumAlertViewController.swift in Sources */,
 				BF9B603829C8465600A23BF2 /* AlbumCoverImageView.swift in Sources */,
 				BF9B604729C8B81700A23BF2 /* LisumContainerView.swift in Sources */,
