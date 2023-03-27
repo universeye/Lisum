@@ -27,8 +27,9 @@ class LisumTitleLabel: UILabel {
     private func configure() {
         textColor = .label
         adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.9 //90%
+        minimumScaleFactor = 0.8 //90%
         lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
+        numberOfLines = 3
     }
 }

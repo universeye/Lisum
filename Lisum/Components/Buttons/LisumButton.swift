@@ -32,7 +32,7 @@ class LisumButton: UIButton {
     func set(color: UIColor, title: String, systemImageName: String) {
         configuration?.baseBackgroundColor = color
         configuration?.title = title
-        
+        setTitleColor(.white, for: .normal)
         configuration?.image = UIImage(systemName: systemImageName)
         configuration?.imagePadding = 6
         configuration?.imagePlacement = .leading

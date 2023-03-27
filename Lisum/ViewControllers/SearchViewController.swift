@@ -69,7 +69,6 @@ class SearchViewController: UIViewController {
         let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
         mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: LisumColor.mainColor, range: range)
         titleLabel.attributedText = mutableAttributedString
-        titleLabel.numberOfLines = 2
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

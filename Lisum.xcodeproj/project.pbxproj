@@ -40,6 +40,7 @@
 		BF9B604B29C8B87900A23BF2 /* LisumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B604A29C8B87900A23BF2 /* LisumButton.swift */; };
 		BF9B604F29C8BD4E00A23BF2 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B604E29C8BD4E00A23BF2 /* LoadingViewController.swift */; };
 		BF9B605129C8BED400A23BF2 /* DotsAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */; };
+		BFA4741A29D17684006DADEF /* DetailLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA4741929D17684006DADEF /* DetailLabelView.swift */; };
 		BFAD3CF829CD997B00B741BA /* DetailActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD3CF729CD997B00B741BA /* DetailActionButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		BF9B604A29C8B87900A23BF2 /* LisumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumButton.swift; sourceTree = "<group>"; };
 		BF9B604E29C8BD4E00A23BF2 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotsAnimationView.swift; sourceTree = "<group>"; };
+		BFA4741929D17684006DADEF /* DetailLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabelView.swift; sourceTree = "<group>"; };
 		BFAD3CF729CD997B00B741BA /* DetailActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,6 +271,7 @@
 				BF9B604029C8693200A23BF2 /* LisumEmptyView.swift */,
 				BF9B604629C8B81700A23BF2 /* LisumContainerView.swift */,
 				BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */,
+				BFA4741929D17684006DADEF /* DetailLabelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				BF9B604F29C8BD4E00A23BF2 /* LoadingViewController.swift in Sources */,
 				BF9B603429C843C400A23BF2 /* MediaInfoCell.swift in Sources */,
 				BF9B605129C8BED400A23BF2 /* DotsAnimationView.swift in Sources */,
+				BFA4741A29D17684006DADEF /* DetailLabelView.swift in Sources */,
 				BF9B604329C8696200A23BF2 /* LisumTitleLabel.swift in Sources */,
 				BF9B5FF229C8341200A23BF2 /* SceneDelegate.swift in Sources */,
 				BF9B603C29C8616D00A23BF2 /* MediaListTableViewCell.swift in Sources */,
@@ -622,8 +626,7 @@
 				INFOPLIST_FILE = Lisum/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -649,8 +652,7 @@
 				INFOPLIST_FILE = Lisum/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -26,8 +26,16 @@ class DetailActionButton: UIButton {
     
     private func configure() {
         configuration = .filled()
-        configuration?.cornerStyle = .large
+        configuration?.cornerStyle = .capsule
         translatesAutoresizingMaskIntoConstraints = false //means use autoLayouts
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 0.3
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+        
     }
     
     func set(color: UIColor, systemImageName: String) {

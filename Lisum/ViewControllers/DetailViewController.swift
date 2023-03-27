@@ -8,11 +8,9 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
-    private var loadingViewController: LoadingViewController?
+    
     let trackId: Int
-    private let containerViewForAlubumCover = LisumContainerView(backgroundColor: LisumColor.containerBgColor)
-    private let containerViewForDetailLabel = LisumContainerView(backgroundColor: LisumColor.containerBgColor)
+    private let containerView = LisumContainerView(backgroundColor: LisumColor.containerBgColor)
     private let albumCoverImageView = AlbumCoverImageView(frame: .zero)
     private var musicInfo: [LookUpResult.MediaInfo] = []
     private let assets = Assets()
@@ -20,14 +18,17 @@ class DetailViewController: UIViewController {
     private let albumPreviewButton = DetailActionButton(color: .white, systemImageName: "text.book.closed.fill")
     private let playButton = DetailActionButton(color: LisumColor.mainColor, systemImageName: "play.fill")
     private let stackView = UIStackView()
+    private let buttonStackView = UIStackView()
+    private let detailLabelView = DetailLabelView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
         lookUpMusic(trackId: trackId)
+        
         configureAlbumCoverSection()
-        configureDetailSection()
         configureButtonSection()
+        configureStackView()
     }
     
     init(trackId: Int) {
@@ -43,71 +44,73 @@ class DetailViewController: UIViewController {
         view.backgroundColor = LisumColor.bgColor
     }
     
-    private func configureAlbumCoverSection() {
-        view.addSubview(containerViewForAlubumCover)
-        containerViewForAlubumCover.layer.borderWidth = 0
-        containerViewForAlubumCover.addSubview(albumCoverImageView)
+    private func configureStackView() {
+        view.addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 16
+        
+        stackView.addArrangedSubview(containerView)
+        stackView.addArrangedSubview(buttonStackView)
         
         NSLayoutConstraint.activate([
-            containerViewForAlubumCover.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            containerViewForAlubumCover.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            containerViewForAlubumCover.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-            containerViewForAlubumCover.heightAnchor.constraint(equalToConstant: 130),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
             
-            albumCoverImageView.centerXAnchor.constraint(equalTo: containerViewForAlubumCover.centerXAnchor),
-            albumCoverImageView.centerYAnchor.constraint(equalTo: containerViewForAlubumCover.centerYAnchor),
-            albumCoverImageView.heightAnchor.constraint(equalToConstant: 100),
-            albumCoverImageView.widthAnchor.constraint(equalToConstant: 100)
+            buttonStackView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
-    private func configureDetailSection() {
-        view.addSubview(containerViewForDetailLabel)
-        containerViewForDetailLabel.layer.borderWidth = 0
+    private func configureAlbumCoverSection() {
+        containerView.layer.borderWidth = 0
+        detailLabelView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(albumCoverImageView)
+        containerView.addSubview(detailLabelView)
         
         NSLayoutConstraint.activate([
-            containerViewForDetailLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            containerViewForDetailLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            containerViewForDetailLabel.topAnchor.constraint(equalTo: containerViewForAlubumCover.bottomAnchor, constant: 16),
-            containerViewForDetailLabel.heightAnchor.constraint(equalToConstant: 160)
+            albumCoverImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
+            albumCoverImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            albumCoverImageView.heightAnchor.constraint(equalToConstant: 100),
+            albumCoverImageView.widthAnchor.constraint(equalToConstant: 100),
+            
+            detailLabelView.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: 16),
+            detailLabelView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
+            detailLabelView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            detailLabelView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
         ])
     }
     
     private func configureButtonSection() {
-        stackView.axis = .horizontal
-                stackView.distribution = .fillEqually
-                stackView.translatesAutoresizingMaskIntoConstraints = false
-                stackView.spacing = 10
-                
-                stackView.addArrangedSubview(artistPreviewButton)
-                stackView.addArrangedSubview(albumPreviewButton)
-                stackView.addArrangedSubview(playButton)
-                
-                view.addSubview(stackView)
-                
-                NSLayoutConstraint.activate([
-                    stackView.topAnchor.constraint(equalTo: containerViewForDetailLabel.bottomAnchor, constant: 16),
-                    stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                    stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                    stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
-                ])
+        buttonStackView.axis = .horizontal
+        buttonStackView.distribution = .fillEqually
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonStackView.spacing = 10
+        
+        buttonStackView.addArrangedSubview(artistPreviewButton)
+        buttonStackView.addArrangedSubview(albumPreviewButton)
+        buttonStackView.addArrangedSubview(playButton)
     }
     
     private func lookUpMusic(trackId: Int) {
         Task {
             do {
-//                startLoading(vc: &loadingViewController)
+                //                startLoading(vc: &loadingViewController)
                 let data = try await NetworkManager.shared.lookUpMusic(for: String(trackId))
                 print(data.results[0].trackName)
                 self.musicInfo.append(contentsOf: data.results)
                 let albumCoverImage = await albumCoverImageView.downloadImageWithAsync(from: data.results[0].artworkUrl100, trackId: String(data.results[0].trackId)) ?? UIImage(named: assets.placeHolderImage)
                 albumCoverImageView.image = albumCoverImage
-//                stopLoading(vc: &loadingViewController)
+                //                stopLoading(vc: &loadingViewController)
+                
+                detailLabelView.setValue(title: musicInfo[0].trackName, artist: musicInfo[0].artistName ?? "N/A", album: musicInfo[0].collectionName ?? "N/A", releaseDate: musicInfo[0].artistName ?? "N/A")
             } catch {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
                 }
-//                stopLoading(vc: &loadingViewController)
+                //                stopLoading(vc: &loadingViewController)
             }
         }
     }
