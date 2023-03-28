@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var containerView: UIView!
+
 extension UIViewController {
     func showEmptyStateView(with message: String, in view: UIView) {
         let emptyStateView = LisumEmptyView(message: message)
@@ -33,7 +35,6 @@ extension UIViewController {
         child.didMove(toParent: self)
     }
 
-    
     func remove() {
         willMove(toParent: nil)
         view.removeFromSuperview()
@@ -53,4 +54,37 @@ extension UIViewController {
         vc?.remove()
         vc = nil
     }
+    
+    func showLoadingView() {
+        containerView = UIView(frame: view.bounds)
+        view.addSubview(containerView)
+        
+        containerView.backgroundColor = .systemBackground
+        containerView.alpha = 0
+        
+        UIView.animate(withDuration: 0.25) {
+            containerView.alpha = 0.8
+        }
+        
+        let dotsAnimationView = DotsAnimationView(dotSize: .init(width: 10, height: 10), dotColor: .white, animationTime: 0.9)
+        dotsAnimationView.startAnimation()
+        containerView.addSubview(dotsAnimationView)
+        
+        dotsAnimationView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            dotsAnimationView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            dotsAnimationView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
+    }
+    
+    func dimissLoadingView () {
+        DispatchQueue.main.async {
+            if containerView != nil {
+                containerView.removeFromSuperview()
+                containerView = nil
+            }
+        }
+    }
+    
 }

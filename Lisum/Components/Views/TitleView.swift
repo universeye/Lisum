@@ -9,6 +9,7 @@ import UIKit
 
 class TitleView: UIView {
     
+    //MARK: Properties
     private let titleLabel = LisumTitleLabel(textAlignment: .left, fontSize: 40)
     private let titleLabel2 = LisumTitleLabel(textAlignment: .left, fontSize: 40)
     private let assets = Assets()
@@ -18,6 +19,8 @@ class TitleView: UIView {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+    
+    //MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -27,6 +30,7 @@ class TitleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Configurations
     private func configure() {
         titleLabel.text = "Discover Music"
         titleLabel2.text = "in"

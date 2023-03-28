@@ -67,7 +67,9 @@ class MediaListViewController2: UIViewController {
             } catch {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
-                }
+                } else {
+                   self.presentAlert(title: "Error😵", messgae: error.localizedDescription, buttonTitle: "Ok")
+               }
                 stopLoading(vc: &loadingViewController)
             }
         }

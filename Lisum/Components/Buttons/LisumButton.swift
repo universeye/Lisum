@@ -24,7 +24,7 @@ class LisumButton: UIButton {
     }
     
     private func configure() {
-        configuration = .tinted()
+        configuration = .filled()
         configuration?.cornerStyle = .medium
         translatesAutoresizingMaskIntoConstraints = false //means use autoLayouts
     }

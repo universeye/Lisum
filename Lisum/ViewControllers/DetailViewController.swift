@@ -96,6 +96,7 @@ class DetailViewController: UIViewController {
     
     private func lookUpMusic(trackId: Int) {
         Task {
+            showLoadingView()
             do {
                 //                startLoading(vc: &loadingViewController)
                 let data = try await NetworkManager.shared.lookUpMusic(for: String(trackId))
@@ -103,15 +104,18 @@ class DetailViewController: UIViewController {
                 self.musicInfo.append(contentsOf: data.results)
                 let albumCoverImage = await albumCoverImageView.downloadImageWithAsync(from: data.results[0].artworkUrl100, trackId: String(data.results[0].trackId)) ?? UIImage(named: assets.placeHolderImage)
                 albumCoverImageView.image = albumCoverImage
-                //                stopLoading(vc: &loadingViewController)
-                
                 detailLabelView.setValue(title: musicInfo[0].trackName, artist: musicInfo[0].artistName ?? "N/A", album: musicInfo[0].collectionName ?? "N/A", releaseDate: musicInfo[0].artistName ?? "N/A")
+                dimissLoadingView()
             } catch {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
+                } else {
+                    self.presentAlert(title: "Error😵", messgae: error.localizedDescription, buttonTitle: "Ok")
                 }
-                //                stopLoading(vc: &loadingViewController)
+                dimissLoadingView()
             }
+            
         }
+        
     }
 }

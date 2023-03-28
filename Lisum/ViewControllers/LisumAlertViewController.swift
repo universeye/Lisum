@@ -43,7 +43,7 @@ class LisumAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = assets.transblack
+        view.backgroundColor = LisumColor.transblack
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
@@ -63,6 +63,7 @@ class LisumAlertViewController: UIViewController {
     
     private func configureContainerView() {
         view.addSubview(containerView)
+        containerView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor), //center vertically
