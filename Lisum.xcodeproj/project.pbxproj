@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF0529B329C997060063880C /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0529B229C997060063880C /* UITextField+Ext.swift */; };
+		BF60B9AA29D2C1DB00945777 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60B9A929D2C1DB00945777 /* TitleView.swift */; };
 		BF98847C29CC3739009D7188 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98847B29CC3739009D7188 /* DetailViewController.swift */; };
 		BF98847E29CC4453009D7188 /* LookUpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98847D29CC4453009D7188 /* LookUpResult.swift */; };
 		BF9B5FF029C8341200A23BF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B5FEF29C8341200A23BF2 /* AppDelegate.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		BF0529B229C997060063880C /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		BF60B9A929D2C1DB00945777 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BF98847B29CC3739009D7188 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BF98847D29CC4453009D7188 /* LookUpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpResult.swift; sourceTree = "<group>"; };
 		BF9B5FEC29C8341200A23BF2 /* Lisum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lisum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,6 +274,7 @@
 				BF9B604629C8B81700A23BF2 /* LisumContainerView.swift */,
 				BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */,
 				BFA4741929D17684006DADEF /* DetailLabelView.swift */,
+				BF60B9A929D2C1DB00945777 /* TitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				BF9B604529C8B72200A23BF2 /* LisumAlertViewController.swift in Sources */,
 				BF9B603829C8465600A23BF2 /* AlbumCoverImageView.swift in Sources */,
 				BF9B604729C8B81700A23BF2 /* LisumContainerView.swift in Sources */,
+				BF60B9AA29D2C1DB00945777 /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

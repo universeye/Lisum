@@ -8,7 +8,7 @@
 import UIKit
 
 struct Assets {
-    var lisumLogo = "lisum-logo"
+    var lisumLogo = "lisumlogo"
     let placeHolderImage = "download"
     let emptyStateImage = "empty-state-logo"
     let searchPageIllustrator = "listenMusic1"

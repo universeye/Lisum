@@ -9,9 +9,10 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    //MARK: - Properties
     lazy var searchTextField = LisumTextField(frame: CGRect(x: 0, y: 0, width: screenWidth - 32, height: 60))
     lazy var settingsButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsTapped))
-    private let titleLabel = LisumTitleLabel(textAlignment: .left, fontSize: 40)
+    private let titleView = TitleView()
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "listenMusic1")
@@ -28,10 +29,11 @@ class SearchViewController: UIViewController {
         return UIScreen.main.bounds.width
     }
     
+    //MARK: - VC Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
-        configureTitleLabel()
+        configureTitleView()
         configureImageView()
         configureTextField()
         createDismissKBTappedGesture()
@@ -56,25 +58,20 @@ class SearchViewController: UIViewController {
         searchTextField.frame.origin.y = imageView.frame.origin.y + imageView.frame.height + 16
     }
     
+    //MARK: - Configurations
     private func configureVC() {
         view.backgroundColor = LisumColor.bgColor
         navigationItem.rightBarButtonItem = settingsButton
     }
     
-    private func configureTitleLabel() {
-        view.addSubview(titleLabel)
-        let mainString = "Dicover Music \nin LISUM"
-        let stringToColor = "LISUM"
-        let range = (mainString as NSString).range(of: stringToColor)
-        let mutableAttributedString = NSMutableAttributedString.init(string: mainString)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: LisumColor.mainColor, range: range)
-        titleLabel.attributedText = mutableAttributedString
+    private func configureTitleView() {
+        view.addSubview(titleView)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            titleLabel.heightAnchor.constraint(equalToConstant: 100)
+            titleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            titleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            titleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            titleView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     
@@ -90,11 +87,12 @@ class SearchViewController: UIViewController {
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            imageView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 16),
             imageView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
+    //MARK: - Functions
     private func search() {
         let mediaListViewController = MediaListViewController2(searchTerm: searchTextField.text ?? "No Text")
         navigationController?.pushViewController(mediaListViewController, animated: true)
