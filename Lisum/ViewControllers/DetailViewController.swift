@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import SafariServices
 
 class DetailViewController: UIViewController {
     
     let trackId: Int
     private let containerView = LisumContainerView(backgroundColor: LisumColor.containerBgColor)
     private let albumCoverImageView = AlbumCoverImageView(frame: .zero)
-    private var musicInfo: [LookUpResult.MediaInfo] = []
+    private var musicInfo: LookUpResult.MediaInfo?
     private let assets = Assets()
     private let artistPreviewButton = DetailActionButton(color: .white, systemImageName: "person.fill")
     private let albumPreviewButton = DetailActionButton(color: .white, systemImageName: "text.book.closed.fill")
@@ -89,6 +90,10 @@ class DetailViewController: UIViewController {
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.spacing = 10
         
+        artistPreviewButton.addTarget(self, action: #selector(showArtistDetail), for: .touchUpInside)
+        albumPreviewButton.addTarget(self, action: #selector(showAlbumDetail), for: .touchUpInside)
+        playButton.addTarget(self, action: #selector(showSongDetail), for: .touchUpInside)
+        
         buttonStackView.addArrangedSubview(artistPreviewButton)
         buttonStackView.addArrangedSubview(albumPreviewButton)
         buttonStackView.addArrangedSubview(playButton)
@@ -98,13 +103,11 @@ class DetailViewController: UIViewController {
         Task {
             showLoadingView()
             do {
-                //                startLoading(vc: &loadingViewController)
                 let data = try await NetworkManager.shared.lookUpMusic(for: String(trackId))
-                print(data.results[0].trackName)
-                self.musicInfo.append(contentsOf: data.results)
+                self.musicInfo = data.results[0]
                 let albumCoverImage = await albumCoverImageView.downloadImageWithAsync(from: data.results[0].artworkUrl100, trackId: String(data.results[0].trackId)) ?? UIImage(named: assets.placeHolderImage)
                 albumCoverImageView.image = albumCoverImage
-                detailLabelView.setValue(title: musicInfo[0].trackName, artist: musicInfo[0].artistName ?? "N/A", album: musicInfo[0].collectionName ?? "N/A", releaseDate: musicInfo[0].artistName ?? "N/A")
+                detailLabelView.setValue(title: musicInfo?.trackName ?? "N/A", artist: musicInfo?.artistName ?? "N/A", album: musicInfo?.collectionName ?? "N/A", releaseDate: musicInfo?.artistName ?? "N/A")
                 dimissLoadingView()
             } catch {
                 if let error = error as? LisumError {
@@ -117,5 +120,28 @@ class DetailViewController: UIViewController {
             
         }
         
+    }
+    
+    @objc private func showArtistDetail() {
+        self.showDetail(musicInfo?.artistViewUrl ?? "")
+    }
+    
+    @objc private func showAlbumDetail() {
+        self.showDetail(musicInfo?.collectionViewUrl ?? "")
+    }
+    
+    @objc private func showSongDetail() {
+        self.showDetail(musicInfo?.previewUrl ?? "")
+    }
+    
+    func showDetail(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            
+            let vc = SFSafariViewController(url: url, configuration: config)
+            vc.preferredControlTintColor = LisumColor.mainColor
+            present(vc, animated: true)
+        }
     }
 }
