@@ -15,6 +15,7 @@ class MediaListViewController: UIViewController {
     private var loadingViewController: LoadingViewController?
     private var hasMoreMusics: Bool = true
     private var offsetCount = 0
+    private let refreshControlll = UIRefreshControl()
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.backgroundColor = LisumColor.bgColor
@@ -27,7 +28,7 @@ class MediaListViewController: UIViewController {
         super.viewDidLoad()
         configureVC()
         configureTableview()
-        getMusic(offsetCount: offsetCount)
+        getMusic(offsetCount: offsetCount) {}
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,17 +58,21 @@ class MediaListViewController: UIViewController {
         tableView.rowHeight = 90
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.addSubview(refreshControlll)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.indicatorStyle = .default
+        
+        refreshControlll.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
     }
     
     //MARK: Functions
-    private func getMusic(offsetCount: Int) {
+    private func getMusic(offsetCount: Int, completion: @escaping () -> Void) {
         Task {
             do {
                 startLoading(vc: &loadingViewController)
                 let data = try await NetworkManager.shared.searchMusic(for: searchTerm, offsetCount: offsetCount)
                 updateData(with: data.results)
+                completion()
                 stopLoading(vc: &loadingViewController)
             } catch {
                 if let error = error as? LisumError {
@@ -75,7 +80,8 @@ class MediaListViewController: UIViewController {
                 } else {
                    self.presentAlert(title: "Error😵", messgae: error.localizedDescription, buttonTitle: "Ok")
                }
-                showEmptyStateView(with: "No Musics", in: self.view)
+                showEmptyStateView(with: "No Musics", in: self.tableView)
+                completion()
                 stopLoading(vc: &loadingViewController)
                 
             }
@@ -89,10 +95,19 @@ class MediaListViewController: UIViewController {
         self.musics.append(contentsOf: musics)
         if musics.isEmpty {
             DispatchQueue.main.async {
-                self.showEmptyStateView(with: "No Musics", in: self.view)
+                self.showEmptyStateView(with: "No Musics", in: self.tableView)
             }
         }
         tableView.reloadData()
+    }
+    
+    //MARK: Refresh Actions
+    @objc private func refresh(_ sender: AnyObject) {
+        musics = []
+        getMusic(offsetCount: 0) { [weak self] in
+            guard let self = self else { return }
+            self.refreshControlll.endRefreshing()
+        }
     }
 }
 
@@ -136,7 +151,7 @@ extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             offsetCount = musics.count
-            getMusic(offsetCount: offsetCount)
+            getMusic(offsetCount: offsetCount) {}
         }
     }
 }
