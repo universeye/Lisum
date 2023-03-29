@@ -94,7 +94,7 @@ class SearchViewController: UIViewController {
     
     //MARK: - Functions
     private func search() {
-        let mediaListViewController = MediaListViewController2(searchTerm: searchTextField.text ?? "No Text")
+        let mediaListViewController = MediaListViewController(searchTerm: searchTextField.text ?? "No Text")
         navigationController?.pushViewController(mediaListViewController, animated: true)
     }
     

@@ -1,5 +1,5 @@
 //
-//  MediaListViewController2.swift
+//  MediaListViewController.swift
 //  Lisum
 //
 //  Created by Terry Kuo on 2023/3/20.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-class MediaListViewController2: UIViewController {
+class MediaListViewController: UIViewController {
     
+    //MARK: Properties
     var searchTerm: String
     private var musics: [SearchResult.MediaInfo] = []
     private var loadingViewController: LoadingViewController?
@@ -21,6 +22,7 @@ class MediaListViewController2: UIViewController {
         return tableView
     }()
     
+    //MARK: VC Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -32,6 +34,7 @@ class MediaListViewController2: UIViewController {
         tableView.frame = view.bounds
     }
     
+    //MARK: Initializers
     init(searchTerm: String) {
         self.searchTerm = searchTerm
         super.init(nibName: nil, bundle: nil)
@@ -42,6 +45,7 @@ class MediaListViewController2: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Configurations
     private func configureVC() {
         view.backgroundColor = LisumColor.bgColor
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -57,6 +61,7 @@ class MediaListViewController2: UIViewController {
         tableView.indicatorStyle = .default
     }
     
+    //MARK: Functions
     private func getMusic(offsetCount: Int) {
         Task {
             do {
@@ -70,7 +75,9 @@ class MediaListViewController2: UIViewController {
                 } else {
                    self.presentAlert(title: "Error😵", messgae: error.localizedDescription, buttonTitle: "Ok")
                }
+                showEmptyStateView(with: "No Musics", in: self.view)
                 stopLoading(vc: &loadingViewController)
+                
             }
         }
     }
@@ -90,7 +97,7 @@ class MediaListViewController2: UIViewController {
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
-extension MediaListViewController2: UITableViewDelegate, UITableViewDataSource {
+extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         musics.count
     }

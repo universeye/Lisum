@@ -27,7 +27,7 @@
 		BF9B602E29C83B6B00A23BF2 /* LisumTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B602D29C83B6B00A23BF2 /* LisumTextField.swift */; };
 		BF9B603629C8462400A23BF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603529C8462400A23BF2 /* Constants.swift */; };
 		BF9B603829C8465600A23BF2 /* AlbumCoverImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603729C8465600A23BF2 /* AlbumCoverImageView.swift */; };
-		BF9B603A29C8612200A23BF2 /* MediaListViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603929C8612200A23BF2 /* MediaListViewController2.swift */; };
+		BF9B603A29C8612200A23BF2 /* MediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603929C8612200A23BF2 /* MediaListViewController.swift */; };
 		BF9B603C29C8616D00A23BF2 /* MediaListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603B29C8616D00A23BF2 /* MediaListTableViewCell.swift */; };
 		BF9B603F29C868FE00A23BF2 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B603E29C868FE00A23BF2 /* UIViewController+Ext.swift */; };
 		BF9B604129C8693200A23BF2 /* LisumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B604029C8693200A23BF2 /* LisumEmptyView.swift */; };
@@ -84,7 +84,7 @@
 		BF9B602D29C83B6B00A23BF2 /* LisumTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumTextField.swift; sourceTree = "<group>"; };
 		BF9B603529C8462400A23BF2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF9B603729C8465600A23BF2 /* AlbumCoverImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverImageView.swift; sourceTree = "<group>"; };
-		BF9B603929C8612200A23BF2 /* MediaListViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListViewController2.swift; sourceTree = "<group>"; };
+		BF9B603929C8612200A23BF2 /* MediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListViewController.swift; sourceTree = "<group>"; };
 		BF9B603B29C8616D00A23BF2 /* MediaListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListTableViewCell.swift; sourceTree = "<group>"; };
 		BF9B603E29C868FE00A23BF2 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		BF9B604029C8693200A23BF2 /* LisumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LisumEmptyView.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				BF9B602029C8344B00A23BF2 /* SearchViewController.swift */,
-				BF9B603929C8612200A23BF2 /* MediaListViewController2.swift */,
+				BF9B603929C8612200A23BF2 /* MediaListViewController.swift */,
 				BF9B604429C8B72200A23BF2 /* LisumAlertViewController.swift */,
 				BF9B604E29C8BD4E00A23BF2 /* LoadingViewController.swift */,
 				BF98847B29CC3739009D7188 /* DetailViewController.swift */,
@@ -412,7 +412,7 @@
 			files = (
 				BF9B5FF429C8341200A23BF2 /* ViewController.swift in Sources */,
 				BF9B604129C8693200A23BF2 /* LisumEmptyView.swift in Sources */,
-				BF9B603A29C8612200A23BF2 /* MediaListViewController2.swift in Sources */,
+				BF9B603A29C8612200A23BF2 /* MediaListViewController.swift in Sources */,
 				BF9B5FF029C8341200A23BF2 /* AppDelegate.swift in Sources */,
 				BF0529B329C997060063880C /* UITextField+Ext.swift in Sources */,
 				BF9B602E29C83B6B00A23BF2 /* LisumTextField.swift in Sources */,

@@ -25,15 +25,15 @@ class AlbumCoverImageView: UIImageView {
         let placeholderImage = UIImage(named: assets.placeHolderImage)
         
         layer.cornerRadius = 10
-        clipsToBounds = true //clip thwe image as well
+        clipsToBounds = true
         image = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
 
     func downloadImageWithAsync(from url: URL?, trackId: String) async -> UIImage? {
         let cacheKey = NSString(string: trackId)
-        if let image = cache.object(forKey: cacheKey) {  //forKey has to be unique string
-            return image //if the image is already downloaded, then skip the rest steps
+        if let image = cache.object(forKey: cacheKey) {
+            return image
         }
         
         guard let url = url else { return nil }
