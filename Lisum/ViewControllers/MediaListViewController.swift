@@ -17,11 +17,18 @@ class MediaListViewController: UIViewController {
     private var offsetCount = 0
     private let refreshControlll = UIRefreshControl()
     private let tableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.backgroundColor = LisumColor.bgColor
         tableView.register(MediaListTableViewCell.self, forCellReuseIdentifier: MediaListTableViewCell.reuseID)
         return tableView
     }()
+    private var isEmpty: Bool = false
+    
+    let vw = UIView()
+    var offsetY: CGFloat = 0
+    var contentHeight: CGFloat = 0
+    var height: CGFloat = 0
+    var percentage: CGFloat = 0
     
     //MARK: VC Cycle
     override func viewDidLoad() {
@@ -59,10 +66,19 @@ class MediaListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.addSubview(refreshControlll)
-        tableView.tableFooterView = UIView(frame: .zero)
-        tableView.indicatorStyle = .default
-        
         refreshControlll.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        
+       
+        vw.backgroundColor = UIColor.clear
+        let arrowUp = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        arrowUp.translatesAutoresizingMaskIntoConstraints = false
+        vw.addSubview(arrowUp)
+        NSLayoutConstraint.activate([
+            arrowUp.centerXAnchor.constraint(equalTo:  vw.centerXAnchor)
+        ])
+        arrowUp.image = UIImage(systemName: "arrow.up")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        vw.alpha = 0.02
+        tableView.tableFooterView = vw
     }
     
     //MARK: Functions
@@ -78,9 +94,9 @@ class MediaListViewController: UIViewController {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
                 } else {
-                   self.presentAlert(title: "Error😵", messgae: error.localizedDescription, buttonTitle: "Ok")
-               }
-                showEmptyStateView(with: "No Musics", in: self.tableView)
+                    self.presentAlert(title: "Error😵", messgae: error.localizedDescription, buttonTitle: "Ok")
+                }
+                updateData(with: [])
                 completion()
                 stopLoading(vc: &loadingViewController)
                 
@@ -92,8 +108,10 @@ class MediaListViewController: UIViewController {
         if musics.count < 50 {
             hasMoreMusics = false
         }
+        isEmpty = false
         self.musics.append(contentsOf: musics)
         if musics.isEmpty {
+            isEmpty = true
             DispatchQueue.main.async {
                 self.showEmptyStateView(with: "No Musics", in: self.tableView)
             }
@@ -103,10 +121,17 @@ class MediaListViewController: UIViewController {
     
     //MARK: Refresh Actions
     @objc private func refresh(_ sender: AnyObject) {
+        if isEmpty {
+            if let viewWithTag = self.tableView.viewWithTag(14) {
+                viewWithTag.removeFromSuperview()
+            }
+        }
         musics = []
         getMusic(offsetCount: 0) { [weak self] in
             guard let self = self else { return }
-            self.refreshControlll.endRefreshing()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.refreshControlll.endRefreshing()
+            }
         }
     }
 }
@@ -141,18 +166,48 @@ extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.frame.size.height
+         offsetY = scrollView.contentOffset.y
+         contentHeight = scrollView.contentSize.height
+         height = scrollView.frame.size.height
         
-        if offsetY > contentHeight - height {
+        print("offsetY = \(offsetY)")
+        print("contentHeight = \(contentHeight)")
+        print("height = \(height)")
+        percentage = (offsetY - (contentHeight/50)) / (contentHeight - height)
+        vw.alpha = percentage
+        print("Percentage = \(percentage)")
+        if (offsetY - (contentHeight/50)) > contentHeight - height {
             guard hasMoreMusics else {
+                print("No New Music")
                 return
             }
             
             offsetCount = musics.count
             getMusic(offsetCount: offsetCount) {}
         }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let identifier = NSString(string: String(musics[indexPath.row].trackId))
+        
+        let config = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { [weak self] _ in
+            guard let self = self else { return UIMenu(title: "Actions", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: []) }
+            
+            
+            let artistAction = UIAction(title: "Go to Artist", image: UIImage(systemName: "person.fill"), identifier: nil, discoverabilityTitle: nil, state: .off) { _  in
+                
+            }
+            let albumAction = UIAction(title: "Go to Album", image: UIImage(systemName: "text.book.closed.fill"), identifier: nil, discoverabilityTitle: nil, state: .off) { _  in
+                
+            }
+            let previewAction = UIAction(title: "Preview Track", image: UIImage(systemName: "play.fill"), identifier: nil, discoverabilityTitle: nil, state: .off) { _  in
+                
+            }
+            
+            return UIMenu(title: "Actions", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: [artistAction, albumAction, previewAction])
+        }
+        return config
+        
     }
 }
 

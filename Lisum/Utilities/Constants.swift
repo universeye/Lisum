@@ -21,3 +21,8 @@ struct LisumColor {
     static let containerBgColor = UIColor(named: "containerBGColor")!
     static let transblack = UIColor(red: 0, green: 0, blue: 0, alpha: 0.65)
 }
+
+struct AlertMessage {
+    static let emptyAlertTitle = "Textfield Empty!"
+    static let emptyAlertMessage = "Enter something to find music!"
+}

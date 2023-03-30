@@ -12,8 +12,13 @@ fileprivate var containerView: UIView!
 extension UIViewController {
     func showEmptyStateView(with message: String, in view: UIView) {
         let emptyStateView = LisumEmptyView(message: message)
-        emptyStateView.frame = view.bounds
+        emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateView.tag = 14
         view.addSubview(emptyStateView)
+        NSLayoutConstraint.activate([
+            emptyStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     func presentAlert(title: String, messgae: String, buttonTitle: String) {

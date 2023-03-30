@@ -20,6 +20,9 @@ class SearchViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    private var isSearchTextfieldEntered: Bool {
+        !searchTextField.text!.isEmpty
+    }
     
     public var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
@@ -94,6 +97,10 @@ class SearchViewController: UIViewController {
     
     //MARK: - Functions
     private func search() {
+        guard isSearchTextfieldEntered else {
+            presentAlert(title: AlertMessage.emptyAlertTitle, messgae: AlertMessage.emptyAlertMessage, buttonTitle: "Ok")
+            return
+        }
         let mediaListViewController = MediaListViewController(searchTerm: searchTextField.text ?? "No Text")
         navigationController?.pushViewController(mediaListViewController, animated: true)
     }
