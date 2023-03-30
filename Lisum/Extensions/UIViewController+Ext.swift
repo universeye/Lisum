@@ -46,20 +46,6 @@ extension UIViewController {
         removeFromParent()
     }
     
-    func startLoading(vc: inout LoadingViewController?) {
-        guard vc == nil else {
-            return
-        }
-        let loadingvc = LoadingViewController()
-        add(loadingvc, in: view)
-        vc = loadingvc
-    }
-
-    func stopLoading(vc: inout LoadingViewController?) {
-        vc?.remove()
-        vc = nil
-    }
-    
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
@@ -83,7 +69,7 @@ extension UIViewController {
         ])
     }
     
-    func dimissLoadingView () {
+    func dimissLoadingView() {
         DispatchQueue.main.async {
             if containerView != nil {
                 containerView.removeFromSuperview()

@@ -85,11 +85,11 @@ class MediaListViewController: UIViewController {
     private func getMusic(offsetCount: Int, completion: @escaping () -> Void) {
         Task {
             do {
-                startLoading(vc: &loadingViewController)
+                showLoadingView()
                 let data = try await NetworkManager.shared.searchMusic(for: searchTerm, offsetCount: offsetCount)
                 updateData(with: data.results)
                 completion()
-                stopLoading(vc: &loadingViewController)
+                dimissLoadingView()
             } catch {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
@@ -98,7 +98,7 @@ class MediaListViewController: UIViewController {
                 }
                 updateData(with: [])
                 completion()
-                stopLoading(vc: &loadingViewController)
+                dimissLoadingView()
                 
             }
         }
