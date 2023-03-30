@@ -101,11 +101,16 @@ extension UIViewController {
         toastLabel.layer.cornerRadius = 18
         toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 2.3, delay: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 2.8, delay: 0.1, options: .curveEaseOut, animations: {
              toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    func generateHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.impactOccurred()
     }
     
 }

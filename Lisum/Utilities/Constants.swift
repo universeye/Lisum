@@ -20,6 +20,7 @@ struct LisumColor {
     static let bgColor = UIColor(named: "bgColor")!
     static let containerBgColor = UIColor(named: "containerBGColor")!
     static let transblack = UIColor(red: 0, green: 0, blue: 0, alpha: 0.65)
+    static let labelColor = UIColor(named: "labelColor")!
 }
 
 struct AlertMessage {

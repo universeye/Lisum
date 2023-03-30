@@ -12,7 +12,6 @@ class MediaListViewController: UIViewController {
     //MARK: Properties
     var searchTerm: String
     private var musics: [SearchResult.MediaInfo] = []
-    private var loadingViewController: LoadingViewController?
     private var hasMoreMusics: Bool = true
     private var offsetCount = 0
     private let refreshControlll = UIRefreshControl()
@@ -23,19 +22,25 @@ class MediaListViewController: UIViewController {
         return tableView
     }()
     private var isEmpty: Bool = false
+    private let pullUpView = UIView()
+    private var arrowUp = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+    private let pullUpLoadingIndicator = UIView(frame: .zero)
+    private var offsetY: CGFloat = 0
+    private var contentHeight: CGFloat = 0
+    private var height: CGFloat = 0
     
-    let vw = UIView()
-    var offsetY: CGFloat = 0
-    var contentHeight: CGFloat = 0
-    var height: CGFloat = 0
-    var percentage: CGFloat = 0
     
     //MARK: VC Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
         configureTableview()
-        getMusic(offsetCount: offsetCount) {}
+        showLoadingView()
+        getMusic(offsetCount: offsetCount) { [weak self] in
+            guard let self = self else { return }
+            self.generateHapticFeedback(style: .light)
+            self.dimissLoadingView()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,29 +72,38 @@ class MediaListViewController: UIViewController {
         tableView.dataSource = self
         tableView.addSubview(refreshControlll)
         refreshControlll.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        
-       
-        vw.backgroundColor = UIColor.clear
-        let arrowUp = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        configureFooterView()
+    }
+    
+    private func configureFooterView() {
+        pullUpView.backgroundColor = UIColor.clear
         arrowUp.translatesAutoresizingMaskIntoConstraints = false
-        vw.addSubview(arrowUp)
+        pullUpView.addSubview(arrowUp)
         NSLayoutConstraint.activate([
-            arrowUp.centerXAnchor.constraint(equalTo:  vw.centerXAnchor)
+            arrowUp.centerXAnchor.constraint(equalTo:  pullUpView.centerXAnchor)
         ])
         arrowUp.image = UIImage(systemName: "arrow.up")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
-        vw.alpha = 0.02
-        tableView.tableFooterView = vw
+        pullUpView.alpha = 0.02
+        
+        pullUpLoadingIndicator.backgroundColor = UIColor.clear
+        let dotsAnimationView = DotsAnimationView(dotSize: .init(width: 10, height: 10), dotColor: LisumColor.labelColor, animationTime: 0.9)
+        dotsAnimationView.translatesAutoresizingMaskIntoConstraints = false
+        dotsAnimationView.startAnimation()
+        pullUpLoadingIndicator.addSubview(dotsAnimationView)
+        NSLayoutConstraint.activate([
+            dotsAnimationView.centerXAnchor.constraint(equalTo:  pullUpLoadingIndicator.centerXAnchor)
+        ])
+        
+        tableView.tableFooterView = pullUpView
     }
     
     //MARK: Functions
     private func getMusic(offsetCount: Int, completion: @escaping () -> Void) {
         Task {
             do {
-                showLoadingView()
                 let data = try await NetworkManager.shared.searchMusic(for: searchTerm, offsetCount: offsetCount)
                 updateData(with: data.results)
                 completion()
-                dimissLoadingView()
             } catch {
                 if let error = error as? LisumError {
                     self.presentAlert(title: "Error😵", messgae: error.rawValue, buttonTitle: "Ok")
@@ -98,8 +112,6 @@ class MediaListViewController: UIViewController {
                 }
                 updateData(with: [])
                 completion()
-                dimissLoadingView()
-                
             }
         }
     }
@@ -126,6 +138,7 @@ class MediaListViewController: UIViewController {
                 viewWithTag.removeFromSuperview()
             }
         }
+        self.generateHapticFeedback(style: .light)
         musics = []
         getMusic(offsetCount: 0) { [weak self] in
             guard let self = self else { return }
@@ -165,27 +178,6 @@ extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
         self.present(vc, animated: true)
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-         offsetY = scrollView.contentOffset.y
-         contentHeight = scrollView.contentSize.height
-         height = scrollView.frame.size.height
-        
-        print("offsetY = \(offsetY)")
-        print("contentHeight = \(contentHeight)")
-        print("height = \(height)")
-        percentage = (offsetY - (contentHeight/50)) / (contentHeight - height)
-        vw.alpha = percentage
-        print("Percentage = \(percentage)")
-        if (offsetY - (contentHeight/50)) > contentHeight - height {
-            guard hasMoreMusics else {
-                self.showToast(message: "No more music!", font: .systemFont(ofSize: 14))
-                return
-            }
-            offsetCount = musics.count
-            getMusic(offsetCount: offsetCount) {}
-        }
-    }
-    
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let identifier = NSString(string: String(musics[indexPath.row].trackId))
         
@@ -208,3 +200,51 @@ extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+//MARK: - ScrollView Delegate
+extension MediaListViewController {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (offsetY - 150) > contentHeight - height {
+            tableView.tableFooterView = pullUpLoadingIndicator
+            self.generateHapticFeedback(style: .light)
+            guard hasMoreMusics else {
+                self.showToast(message: "No more music !", font: .systemFont(ofSize: 14))
+                self.pullUpView.alpha = 0
+                self.pullUpLoadingIndicator.alpha = 0
+                return
+            }
+            offsetCount = musics.count
+            getMusic(offsetCount: offsetCount) { [weak self] in
+                guard let self = self else { return }
+                self.pullUpLoadingIndicator.alpha = 0
+            }
+        }
+        
+        UIView.animate(withDuration: 0.14, delay: 0.01) {
+            self.pullUpView.alpha = 0
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        offsetY = scrollView.contentOffset.y
+        contentHeight = scrollView.contentSize.height
+        height = scrollView.frame.size.height
+        
+        if (offsetY - 120) > contentHeight - height {
+            UIView.animate(withDuration: 0.14, delay: 0.01) {
+                self.arrowUp.image = UIImage(systemName: "magnifyingglass")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+            }
+        } else {
+            UIView.animate(withDuration: 0.14, delay: 0.01) {
+                self.arrowUp.image = UIImage(systemName: "arrow.up")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+            }
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        tableView.tableFooterView = pullUpView
+        UIView.animate(withDuration: 0.14, delay: 0.01) {
+            self.pullUpView.alpha = 1
+            self.pullUpLoadingIndicator.alpha = 1
+        }
+    }
+}
