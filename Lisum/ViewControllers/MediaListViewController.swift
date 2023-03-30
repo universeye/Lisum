@@ -178,10 +178,9 @@ extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
         print("Percentage = \(percentage)")
         if (offsetY - (contentHeight/50)) > contentHeight - height {
             guard hasMoreMusics else {
-                print("No New Music")
+                self.showToast(message: "No more music!", font: .systemFont(ofSize: 14))
                 return
             }
-            
             offsetCount = musics.count
             getMusic(offsetCount: offsetCount) {}
         }
