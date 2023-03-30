@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 fileprivate var containerView: UIView!
 
@@ -75,6 +76,17 @@ extension UIViewController {
                 containerView.removeFromSuperview()
                 containerView = nil
             }
+        }
+    }
+    
+    func showDetail(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            
+            let vc = SFSafariViewController(url: url, configuration: config)
+            vc.preferredControlTintColor = LisumColor.mainColor
+            present(vc, animated: true)
         }
     }
     

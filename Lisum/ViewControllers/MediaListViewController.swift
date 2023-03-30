@@ -192,18 +192,15 @@ extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
         
         let config = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { [weak self] _ in
             guard let self = self else { return UIMenu(title: "Actions", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: []) }
-            
-            
             let artistAction = UIAction(title: "Go to Artist", image: UIImage(systemName: "person.fill"), identifier: nil, discoverabilityTitle: nil, state: .off) { _  in
-                
+                self.showDetail(self.musics[indexPath.row].artistViewUrl ?? "")
             }
             let albumAction = UIAction(title: "Go to Album", image: UIImage(systemName: "text.book.closed.fill"), identifier: nil, discoverabilityTitle: nil, state: .off) { _  in
-                
+                self.showDetail(self.musics[indexPath.row].collectionViewUrl ?? "")
             }
             let previewAction = UIAction(title: "Preview Track", image: UIImage(systemName: "play.fill"), identifier: nil, discoverabilityTitle: nil, state: .off) { _  in
-                
+                self.showDetail(self.musics[indexPath.row].previewUrl ?? "")
             }
-            
             return UIMenu(title: "Actions", image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: [artistAction, albumAction, previewAction])
         }
         return config

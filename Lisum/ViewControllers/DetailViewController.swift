@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SafariServices
+
 
 class DetailViewController: UIViewController {
     
@@ -134,14 +134,5 @@ class DetailViewController: UIViewController {
         self.showDetail(musicInfo?.previewUrl ?? "")
     }
     
-    func showDetail(_ urlString: String) {
-        if let url = URL(string: urlString) {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            
-            let vc = SFSafariViewController(url: url, configuration: config)
-            vc.preferredControlTintColor = LisumColor.mainColor
-            present(vc, animated: true)
-        }
-    }
+    
 }
