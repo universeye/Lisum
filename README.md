@@ -47,7 +47,7 @@ Discover music in Lisum, fully built in UIKit.
 
 # Source
 
-###API
+### API
 
 [iTunes Search](https://performance-partners.apple.com/search-api)
 
