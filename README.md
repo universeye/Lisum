@@ -19,7 +19,7 @@ Discover music in Lisum, fully built in UIKit.
 
 * Pull Up For More!
 
-<img src= "ReadmeSources/pullupformore.gif" width = 40% height = 40%>
+<img src= "ReadmeSources/pullformore.gif" width = 40% height = 40%>
 
 * Custum Alert & Empty View
 
