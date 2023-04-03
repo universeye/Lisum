@@ -15,11 +15,11 @@ class SearchViewController: UIViewController {
     private let titleView = TitleView()
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "listenMusic1")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    private let assets = Assets()
     private var isSearchTextfieldEntered: Bool {
         !searchTextField.text!.isEmpty
     }
@@ -64,7 +64,7 @@ class SearchViewController: UIViewController {
     //MARK: - Configurations
     private func configureVC() {
         view.backgroundColor = LisumColor.bgColor
-        navigationItem.rightBarButtonItem = settingsButton
+//        navigationItem.rightBarButtonItem = settingsButton
     }
     
     private func configureTitleView() {
@@ -86,6 +86,7 @@ class SearchViewController: UIViewController {
     
     private func configureImageView() {
         view.addSubview(imageView)
+        imageView.image = assets.searchPageIllustrator
         
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),

@@ -69,9 +69,9 @@ class DetailLabelView: UIView {
         
         NSLayoutConstraint.activate([
             titleStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleStackView.trailingAnchor.constraint(equalTo: valueStackView.leadingAnchor),
             titleStackView.topAnchor.constraint(equalTo: topAnchor),
             titleStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            titleStackView.widthAnchor.constraint(equalToConstant: 90),
             
             valueStackView.topAnchor.constraint(equalTo: topAnchor),
             valueStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -86,6 +86,7 @@ class DetailLabelView: UIView {
         albumTitleLabel.text = "Album: "
         releaseDateTitleLabel.text = "Release Date: "
         
+        releaseDateTitleLabel.numberOfLines = 2
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
         

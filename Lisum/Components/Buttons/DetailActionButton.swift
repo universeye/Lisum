@@ -19,15 +19,21 @@ class DetailActionButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(color: UIColor, systemImageName: String) {
+    convenience init(title: String, color: UIColor, systemImageName: String) {
         self.init(frame: .zero)
-        set(color: color, systemImageName: systemImageName)
+        set(title: title, color: color, systemImageName: systemImageName)
     }
     
     private func configure() {
         configuration = .filled()
         configuration?.cornerStyle = .capsule
+        configuration?.baseForegroundColor = .black
         translatesAutoresizingMaskIntoConstraints = false //means use autoLayouts
+        configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+           var outgoing = incoming
+            outgoing.font = .systemFont(ofSize: 14, weight: .bold)
+           return outgoing
+        }
         
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = .zero
@@ -38,12 +44,12 @@ class DetailActionButton: UIButton {
         
     }
     
-    func set(color: UIColor, systemImageName: String) {
+    func set(title: String, color: UIColor, systemImageName: String) {
         configuration?.baseBackgroundColor = color
         configuration?.image = UIImage(systemName: systemImageName)?.withTintColor(.black, renderingMode: .alwaysOriginal)
         configuration?.imagePadding = 6
+        configuration?.title = title
+        
+    
     }
-    
-    
-    
 }

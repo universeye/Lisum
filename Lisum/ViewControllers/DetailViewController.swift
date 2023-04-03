@@ -10,18 +10,20 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    //MARK: Properties
     let trackId: Int
     private let containerView = LisumContainerView(backgroundColor: LisumColor.containerBgColor)
     private let albumCoverImageView = AlbumCoverImageView(frame: .zero)
     private var musicInfo: LookUpResult.MediaInfo?
     private let assets = Assets()
-    private let artistPreviewButton = DetailActionButton(color: .white, systemImageName: "person.fill")
-    private let albumPreviewButton = DetailActionButton(color: .white, systemImageName: "text.book.closed.fill")
-    private let playButton = DetailActionButton(color: LisumColor.mainColor, systemImageName: "play.fill")
+    private let artistPreviewButton = DetailActionButton(title: "Artist", color: .white, systemImageName: "person.fill")
+    private let albumPreviewButton = DetailActionButton(title: "Album", color: .white, systemImageName: "text.book.closed.fill")
+    private let playButton = DetailActionButton(title: "Preview", color: LisumColor.mainColor, systemImageName: "play.fill")
     private let stackView = UIStackView()
     private let buttonStackView = UIStackView()
     private let detailLabelView = DetailLabelView()
     
+    //MARK: VC Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -32,6 +34,7 @@ class DetailViewController: UIViewController {
         configureStackView()
     }
     
+    //MARK: Initializers
     init(trackId: Int) {
         self.trackId = trackId
         super.init(nibName: nil, bundle: nil)
@@ -41,6 +44,8 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    //MARK: Configurations
     private func configureVC() {
         view.backgroundColor = LisumColor.bgColor
     }
@@ -99,6 +104,8 @@ class DetailViewController: UIViewController {
         buttonStackView.addArrangedSubview(playButton)
     }
     
+    
+    //MARK: Functions
     private func lookUpMusic(trackId: Int) {
         Task {
             showLoadingView()
@@ -107,7 +114,7 @@ class DetailViewController: UIViewController {
                 self.musicInfo = data.results[0]
                 let albumCoverImage = await albumCoverImageView.downloadImageWithAsync(from: data.results[0].artworkUrl100, trackId: String(data.results[0].trackId)) ?? UIImage(named: assets.placeHolderImage)
                 albumCoverImageView.image = albumCoverImage
-                detailLabelView.setValue(title: musicInfo?.trackName ?? "N/A", artist: musicInfo?.artistName ?? "N/A", album: musicInfo?.collectionName ?? "N/A", releaseDate: musicInfo?.artistName ?? "N/A")
+                detailLabelView.setValue(title: musicInfo?.trackName ?? "N/A", artist: musicInfo?.artistName ?? "N/A", album: musicInfo?.collectionName ?? "N/A", releaseDate: musicInfo?.releaseDate?.convertToDate()?.convertToYearMonthDatFormat() ?? "N/A")
                 dimissLoadingView()
             } catch {
                 if let error = error as? LisumError {
@@ -133,6 +140,4 @@ class DetailViewController: UIViewController {
     @objc private func showSongDetail() {
         self.showDetail(musicInfo?.previewUrl ?? "")
     }
-    
-    
 }

@@ -13,8 +13,6 @@
 		BF98847E29CC4453009D7188 /* LookUpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98847D29CC4453009D7188 /* LookUpResult.swift */; };
 		BF9B5FF029C8341200A23BF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B5FEF29C8341200A23BF2 /* AppDelegate.swift */; };
 		BF9B5FF229C8341200A23BF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B5FF129C8341200A23BF2 /* SceneDelegate.swift */; };
-		BF9B5FF429C8341200A23BF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B5FF329C8341200A23BF2 /* ViewController.swift */; };
-		BF9B5FF729C8341200A23BF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9B5FF529C8341200A23BF2 /* Main.storyboard */; };
 		BF9B5FF929C8341300A23BF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9B5FF829C8341300A23BF2 /* Assets.xcassets */; };
 		BF9B5FFC29C8341300A23BF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9B5FFA29C8341300A23BF2 /* LaunchScreen.storyboard */; };
 		BF9B600729C8341300A23BF2 /* LisumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B600629C8341300A23BF2 /* LisumTests.swift */; };
@@ -40,6 +38,8 @@
 		BF9B605129C8BED400A23BF2 /* DotsAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */; };
 		BFA4741A29D17684006DADEF /* DetailLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA4741929D17684006DADEF /* DetailLabelView.swift */; };
 		BFAD3CF829CD997B00B741BA /* DetailActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD3CF729CD997B00B741BA /* DetailActionButton.swift */; };
+		BFDA40D929DAA37600675D0F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA40D829DAA37600675D0F /* String+Ext.swift */; };
+		BFDA40DB29DAA3A200675D0F /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA40DA29DAA3A200675D0F /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +67,6 @@
 		BF9B5FEC29C8341200A23BF2 /* Lisum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lisum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9B5FEF29C8341200A23BF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF9B5FF129C8341200A23BF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BF9B5FF329C8341200A23BF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BF9B5FF629C8341200A23BF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF9B5FF829C8341300A23BF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF9B5FFB29C8341300A23BF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF9B5FFD29C8341300A23BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +95,8 @@
 		BF9B605029C8BED400A23BF2 /* DotsAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotsAnimationView.swift; sourceTree = "<group>"; };
 		BFA4741929D17684006DADEF /* DetailLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLabelView.swift; sourceTree = "<group>"; };
 		BFAD3CF729CD997B00B741BA /* DetailActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailActionButton.swift; sourceTree = "<group>"; };
+		BFDA40D829DAA37600675D0F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		BFDA40DA29DAA3A200675D0F /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +158,6 @@
 				BF9B602629C837F600A23BF2 /* Model */,
 				BF9B602829C8380E00A23BF2 /* Utilities */,
 				BF9B603D29C868EF00A23BF2 /* Extensions */,
-				BF9B601F29C8342B00A23BF2 /* NoUse */,
 			);
 			path = Lisum;
 			sourceTree = "<group>";
@@ -178,15 +177,6 @@
 				BF9B601229C8341300A23BF2 /* LisumUITestsLaunchTests.swift */,
 			);
 			path = LisumUITests;
-			sourceTree = "<group>";
-		};
-		BF9B601F29C8342B00A23BF2 /* NoUse */ = {
-			isa = PBXGroup;
-			children = (
-				BF9B5FF329C8341200A23BF2 /* ViewController.swift */,
-				BF9B5FF529C8341200A23BF2 /* Main.storyboard */,
-			);
-			path = NoUse;
 			sourceTree = "<group>";
 		};
 		BF9B602629C837F600A23BF2 /* Model */ = {
@@ -245,6 +235,8 @@
 			children = (
 				BF9B603E29C868FE00A23BF2 /* UIViewController+Ext.swift */,
 				BF0529B229C997060063880C /* UITextField+Ext.swift */,
+				BFDA40D829DAA37600675D0F /* String+Ext.swift */,
+				BFDA40DA29DAA3A200675D0F /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -385,7 +377,6 @@
 			files = (
 				BF9B5FFC29C8341300A23BF2 /* LaunchScreen.storyboard in Resources */,
 				BF9B5FF929C8341300A23BF2 /* Assets.xcassets in Resources */,
-				BF9B5FF729C8341200A23BF2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +401,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF9B5FF429C8341200A23BF2 /* ViewController.swift in Sources */,
 				BF9B604129C8693200A23BF2 /* LisumEmptyView.swift in Sources */,
 				BF9B603A29C8612200A23BF2 /* MediaListViewController.swift in Sources */,
 				BF9B5FF029C8341200A23BF2 /* AppDelegate.swift in Sources */,
@@ -420,6 +410,7 @@
 				BF9B604929C8B84300A23BF2 /* LisumBodyLabel.swift in Sources */,
 				BF9B602329C836D500A23BF2 /* NetworkManager.swift in Sources */,
 				BF9B604B29C8B87900A23BF2 /* LisumButton.swift in Sources */,
+				BFDA40D929DAA37600675D0F /* String+Ext.swift in Sources */,
 				BF9B602129C8344B00A23BF2 /* SearchViewController.swift in Sources */,
 				BF98847C29CC3739009D7188 /* DetailViewController.swift in Sources */,
 				BF9B602A29C8384E00A23BF2 /* LisumError.swift in Sources */,
@@ -429,6 +420,7 @@
 				BF9B604329C8696200A23BF2 /* LisumTitleLabel.swift in Sources */,
 				BF9B5FF229C8341200A23BF2 /* SceneDelegate.swift in Sources */,
 				BF9B603C29C8616D00A23BF2 /* MediaListTableViewCell.swift in Sources */,
+				BFDA40DB29DAA3A200675D0F /* Date+Ext.swift in Sources */,
 				BF98847E29CC4453009D7188 /* LookUpResult.swift in Sources */,
 				BF9B603629C8462400A23BF2 /* Constants.swift in Sources */,
 				BF9B603F29C868FE00A23BF2 /* UIViewController+Ext.swift in Sources */,
@@ -473,14 +465,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BF9B5FF529C8341200A23BF2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BF9B5FF629C8341200A23BF2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BF9B5FFA29C8341300A23BF2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -11,7 +11,7 @@ struct Assets {
     let lisumLogo = "lisumlogo"
     let placeHolderImage = "lisumsq"
     let emptyStateImage = "empty-state-logo"
-    let searchPageIllustrator = "listenMusic1"
+    let searchPageIllustrator = UIImage(named: "listenMusic1")
     let padding: CGFloat = 20
 }
 

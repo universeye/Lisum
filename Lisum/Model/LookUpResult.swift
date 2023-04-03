@@ -19,6 +19,7 @@ struct LookUpResult: Codable {
         let artistViewUrl: String?
         let collectionViewUrl: String?
         let previewUrl: String?
+        let releaseDate: String?
         
         private enum CodingKeys: String, CodingKey {
             case trackName
@@ -31,6 +32,7 @@ struct LookUpResult: Codable {
             case artistViewUrl
             case collectionViewUrl
             case previewUrl
+            case releaseDate
         }
     }
     
