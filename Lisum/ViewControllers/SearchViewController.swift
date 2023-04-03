@@ -64,7 +64,6 @@ class SearchViewController: UIViewController {
     //MARK: - Configurations
     private func configureVC() {
         view.backgroundColor = LisumColor.bgColor
-//        navigationItem.rightBarButtonItem = settingsButton
     }
     
     private func configureTitleView() {
