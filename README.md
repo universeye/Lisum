@@ -23,7 +23,7 @@ Discover music in Lisum, fully built in UIKit.
 
 * Custum Alert & Empty View
 
-<img src= "ReadmeSources/lisumalert.png" width = 30% height = 30%> <img src= "ReadmeSources/lisumss1.png" width = 30% height = 30%> 
+<img src= "ReadmeSources/lisumalert.png" width = 30% height = 30%> <img src= "ReadmeSources/lisumemptyview.png" width = 30% height = 30%> 
 
 
 
