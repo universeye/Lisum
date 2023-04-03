@@ -1,5 +1,5 @@
 
-<img src= "ReadmeSources/lisumlogo.png" width = 80% height = 80%>
+<img src= "ReadmeSources/lisumlogo.png" width = 60% height = 60%>
 
 # Lisum
 Discover music in Lisum, fully built in UIKit. 
@@ -14,17 +14,17 @@ Discover music in Lisum, fully built in UIKit.
 
 # Screenshots
 
-<img src= "ReadmeSources/lisumss1.png" width = 40% height = 40%>  <img src= "ReadmeSources/lisumss2.png" width = 40% height = 40%>
-<img src= "ReadmeSources/lisumss3.png" width = 40% height = 40%>
+<img src= "ReadmeSources/lisumss1.png" width = 30% height = 30%>  <img src= "ReadmeSources/lisumss2.png" width = 30% height = 30%>
+<img src= "ReadmeSources/lisumss3.png" width = 30% height = 30%>
 
 * Pull Up For More!
 
-<img src= "ReadmeSources/pullformore.gif" width = 40% height = 40%>
+<img src= "ReadmeSources/pullformore.gif" width = 30% height = 30%>
 
 * Custum Alert & Empty View
 
-<img src= "ReadmeSources/lisumalert.png" width = 40% height = 40%> 
-<img src= "ReadmeSources/lisumss1.png" width = 40% height = 40%> 
+<img src= "ReadmeSources/lisumalert.png" width = 30% height = 30%> 
+<img src= "ReadmeSources/lisumss1.png" width = 30% height = 30%> 
 
 
 # Tech
