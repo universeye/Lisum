@@ -10,7 +10,7 @@ import UIKit
 struct Assets {
     let lisumLogo = "lisumlogo"
     let placeHolderImage = "lisumsq"
-    let emptyStateImage = "empty-state-logo"
+    let emptyStateImage = UIImage(named: "lisumEmptyState")
     let searchPageIllustrator = UIImage(named: "listenMusic1")
     let padding: CGFloat = 20
 }
