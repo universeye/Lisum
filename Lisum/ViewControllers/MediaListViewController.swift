@@ -203,9 +203,9 @@ extension MediaListViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - ScrollView Delegate
 extension MediaListViewController {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard !musics.isEmpty else { return }
         if (offsetY - 150) > contentHeight - height {
             tableView.tableFooterView = pullUpLoadingIndicator
-            self.generateHapticFeedback(style: .light)
             guard hasMoreMusics else {
                 self.showToast(message: "No more music !", font: .systemFont(ofSize: 14))
                 self.pullUpView.alpha = 0
@@ -225,11 +225,13 @@ extension MediaListViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard !musics.isEmpty else { return }
         offsetY = scrollView.contentOffset.y
         contentHeight = scrollView.contentSize.height
         height = scrollView.frame.size.height
         
         if (offsetY - 120) > contentHeight - height {
+            self.generateHapticFeedback(style: .light)
             UIView.animate(withDuration: 0.14, delay: 0.01) {
                 self.arrowUp.image = UIImage(systemName: "magnifyingglass")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             }
@@ -241,6 +243,7 @@ extension MediaListViewController {
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard !musics.isEmpty else { return }
         tableView.tableFooterView = pullUpView
         UIView.animate(withDuration: 0.14, delay: 0.01) {
             self.pullUpView.alpha = 1
