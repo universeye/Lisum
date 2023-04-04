@@ -82,7 +82,8 @@ class MediaListViewController: UIViewController {
         NSLayoutConstraint.activate([
             arrowUp.centerXAnchor.constraint(equalTo:  pullUpView.centerXAnchor)
         ])
-        arrowUp.image = UIImage(systemName: "arrow.up")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        arrowUp.image = UIImage(systemName: "arrow.up",
+                                withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .bold))?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
         pullUpView.alpha = 0.02
         
         pullUpLoadingIndicator.backgroundColor = UIColor.clear
@@ -233,11 +234,13 @@ extension MediaListViewController {
         if (offsetY - 120) > contentHeight - height {
             self.generateHapticFeedback(style: .light)
             UIView.animate(withDuration: 0.14, delay: 0.01) {
-                self.arrowUp.image = UIImage(systemName: "magnifyingglass")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+                self.arrowUp.image = UIImage(systemName: "magnifyingglass",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .bold))?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             }
         } else {
             UIView.animate(withDuration: 0.14, delay: 0.01) {
-                self.arrowUp.image = UIImage(systemName: "arrow.up")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+                self.arrowUp.image = UIImage(systemName: "arrow.up",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .bold))?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             }
         }
     }
