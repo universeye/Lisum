@@ -81,6 +81,7 @@ class SearchViewController: UIViewController {
         view.addSubview(searchTextField)
         searchTextField.center.x = view.center.x
         searchTextField.delegate = self
+        searchTextField.keyboardType = .asciiCapable
     }
     
     private func configureImageView() {

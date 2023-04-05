@@ -216,6 +216,7 @@ extension MediaListViewController {
             offsetCount = musics.count
             getMusic(offsetCount: offsetCount) { [weak self] in
                 guard let self = self else { return }
+                self.generateHapticFeedback(style: .light)
                 self.pullUpLoadingIndicator.alpha = 0
             }
         }
@@ -232,7 +233,6 @@ extension MediaListViewController {
         height = scrollView.frame.size.height
         
         if (offsetY - 120) > contentHeight - height {
-            self.generateHapticFeedback(style: .light)
             UIView.animate(withDuration: 0.14, delay: 0.01) {
                 self.arrowUp.image = UIImage(systemName: "magnifyingglass",
                                              withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .bold))?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
