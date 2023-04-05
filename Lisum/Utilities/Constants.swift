@@ -27,3 +27,14 @@ struct AlertMessage {
     static let emptyAlertTitle = "Textfield Empty!"
     static let emptyAlertMessage = "Enter something to find music!"
 }
+
+struct Constants {
+    static var screenHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+
+    static var screenWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+}
+

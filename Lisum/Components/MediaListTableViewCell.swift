@@ -107,8 +107,5 @@ class MediaListTableViewCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
         ])
-        
     }
-    
-   
 }

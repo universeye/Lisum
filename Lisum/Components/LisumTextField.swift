@@ -24,9 +24,9 @@ class LisumTextField: UITextField {
         withImage(direction: .Left, image: UIImage(systemName: "magnifyingglass")!, colorSeparator: LisumColor.mainColor, colorBorder: .yellow)
         layer.cornerRadius = 20
         layer.borderWidth = 2
-        layer.borderColor = LisumColor.mainColor.cgColor //do bordoer color, need to use CGColor not UIColor, so you have to type out full UIColor
-        textColor = .label //black on lightmode, white on darkmode
-        tintColor = .label //blinking cursur
+        layer.borderColor = LisumColor.mainColor.cgColor
+        textColor = .label
+        tintColor = .label
         textAlignment = .center
         font = UIFont.preferredFont(forTextStyle: .title2)
         adjustsFontSizeToFitWidth = true

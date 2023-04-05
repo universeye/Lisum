@@ -10,8 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     //MARK: - Properties
-    lazy var searchTextField = LisumTextField(frame: CGRect(x: 0, y: 0, width: screenWidth - 32, height: 60))
-    lazy var settingsButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsTapped))
+    lazy var searchTextField = LisumTextField(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth - 32, height: 60))
     private let titleView = TitleView()
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,13 +23,7 @@ class SearchViewController: UIViewController {
         !searchTextField.text!.isEmpty
     }
     
-    public var screenHeight: CGFloat {
-        return UIScreen.main.bounds.height
-    }
     
-    public var screenWidth: CGFloat {
-        return UIScreen.main.bounds.width
-    }
     
     //MARK: - VC Cycle
     override func viewDidLoad() {
@@ -48,7 +41,6 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -111,17 +103,12 @@ class SearchViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc private func settingsTapped() {
-        print("self.searchTextField.frame.origin.y\(self.searchTextField.frame.origin.y)")
-        print("screenHeight = \(screenHeight)")
-    }
-    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if searchTextField.frame.origin.y != 440 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     UIView.animate(withDuration: 0.3, delay: 0.0) {
-                        self.searchTextField.frame.origin.y = self.screenHeight - keyboardSize.height - self.searchTextField.frame.height - 16
+                        self.searchTextField.frame.origin.y = Constants.screenHeight - keyboardSize.height - self.searchTextField.frame.height - 16
                     }
                 }
             }
